@@ -39,16 +39,6 @@ public class HomeController extends Controller {
         return ok(index.render(u, allFilms, env, allCarousel));
     }
 
-
-    public Result search() {
-        DynamicForm searchForm = formFactory.form().bindFromRequest();
-        String filmTitle = searchForm.get("title");
-        User u = getUserFromSession();
-        List<Film> searchFilms = Film.search(filmTitle);
-        List<carousel> allCarousel = carousel.findAll();
-        return ok(index.render(u, searchFilms, env, allCarousel));
-    }
-
     public Result film() {
         User u = getUserFromSession();
         Film f = null;
@@ -77,6 +67,11 @@ public class HomeController extends Controller {
     public Result login() {
         Form<Login> loginForm = formFactory.form(Login.class);
         return ok(login.render(loginForm));
+    }
+
+    public Result about() {
+        User u = getUserFromSession();
+        return ok(about.render(u));
     }
 
     public Result addUserSubmit() {
@@ -111,4 +106,12 @@ public class HomeController extends Controller {
     public static User getUserFromSession() {
         return User.getUserById(session().get("email"));
     }
+    public Result search() {
+          DynamicForm searchForm = formFactory.form().bindFromRequest();
+          String filmTitle = searchForm.get("title");
+          User u = getUserFromSession();
+          List<Film> searchFilms = Film.search(filmTitle);
+          List<carousel> allCarousel = carousel.findAll();
+          return ok(index.render(u, searchFilms, env, allCarousel));
+      }
 }
