@@ -221,4 +221,11 @@ h1{
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
     }
+
+}
+
+#searchFunction {
+    height: 30px;
+    width: 250px;
+    clear: both;
 }
