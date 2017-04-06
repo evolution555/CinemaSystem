@@ -28,6 +28,15 @@ create table showing_time (
 );
 create sequence showing_time_seq increment by 1;
 
+create table staff (
+  name                          varchar(255) not null,
+  job                           varchar(255),
+  info                          varchar(255),
+  email                         varchar(255),
+  number                        varchar(255),
+  constraint pk_staff primary key (name)
+);
+
 create table user (
   email                         varchar(255) not null,
   name                          varchar(255),
@@ -57,6 +66,8 @@ drop table if exists showing;
 
 drop table if exists showing_time;
 drop sequence if exists showing_time_seq;
+
+drop table if exists staff;
 
 drop table if exists user;
 

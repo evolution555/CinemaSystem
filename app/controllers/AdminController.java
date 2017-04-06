@@ -3,6 +3,7 @@ package controllers;
 import play.api.Environment;
 import play.db.ebean.Transactional;
 import play.mvc.*;
+import views.html.about;
 import views.html.adminPages.*;
 import play.data.*;
 import models.users.*;
@@ -209,6 +210,27 @@ public class AdminController extends Controller {
         flash("success", "Banner has been deleted.");
         return redirect(routes.AdminController.adminFilm());
     }
+
+    public Result about() {
+        User u = HomeController.getUserFromSession();
+        List<Staff> staffList = Staff.findAll();
+        return ok(about.render(u,staffList));
+    }
+
+    public Result adminAddStaff() {
+        Form<Staff> addStaffForm = formFactory.form(Staff.class);
+        User u = HomeController.getUserFromSession();
+        return ok(adminAddStaff.render(addStaffForm, u, null));
+    }
+
+    public Result addStaffSubmit() {
+        Form<Staff> addStaffForm = formFactory.form(Staff.class).bindFromRequest();
+        Staff addStaff = addStaffForm.get();
+        addStaff.save();
+        flash("success", "Staff " + addStaff.getName() + " has been created");
+        return redirect(controllers.routes.HomeController.about());
+    }
+
 }
 
 

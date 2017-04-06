@@ -79,8 +79,15 @@ public class HomeController extends Controller {
         return ok(login.render(loginForm));
     }
 
+    public Result about() {
+        User u = getUserFromSession();
+        List<Staff> s = null;
+        return ok(about.render(u,s));
+    }
+
     public Result addUserSubmit() {
         DynamicForm newUserForm = formFactory.form().bindFromRequest();
+
         Form errorForm = formFactory.form().bindFromRequest();
         if (newUserForm.hasErrors()) {
             return badRequest(signUp.render(errorForm, "Error with form."));
