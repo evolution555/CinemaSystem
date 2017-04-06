@@ -106,4 +106,12 @@ public class HomeController extends Controller {
     public static User getUserFromSession() {
         return User.getUserById(session().get("email"));
     }
+    public Result search() {
+          DynamicForm searchForm = formFactory.form().bindFromRequest();
+          String filmTitle = searchForm.get("title");
+          User u = getUserFromSession();
+          List<Film> searchFilms = Film.search(filmTitle);
+          List<carousel> allCarousel = carousel.findAll();
+          return ok(index.render(u, searchFilms, env, allCarousel));
+      }
 }
