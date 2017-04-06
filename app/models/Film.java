@@ -23,13 +23,6 @@ public class Film extends Model{
         return Film.find.all();
     }
 
-    public static List<Film> search(String title) {
-        return Film.find.where()
-                .ilike("title", "%" + title + "%")
-                .orderBy("title asc")
-                .findList();
-    }
-
 
     public String getTitle() {
         return title;

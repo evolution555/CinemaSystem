@@ -26,7 +26,6 @@ POST        /adminShowingSubmit            controllers.AdminController.adminShow
 POST        /addUserSubmit                 controllers.HomeController.addUserSubmit
 POST        /loginSubmit                   controllers.LoginController.loginSubmit
 POST        /addFilmSubmit                 controllers.AdminController.addFilmSubmit
-POST       /search                       controllers.HomeController.search
 # An example controller showing how to use dependency injection
 GET         /count                         controllers.CountController.count
 # An example controller showing how to write asynchronous code
