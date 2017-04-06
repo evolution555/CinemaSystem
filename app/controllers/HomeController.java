@@ -39,8 +39,14 @@ public class HomeController extends Controller {
         return ok(index.render(u, allFilms, env, allCarousel));
     }
 
-    public Result aboutUs(){
-        return ok(contactUs.render(getUserFromSession()));
+
+    public Result search() {
+        DynamicForm searchForm = formFactory.form().bindFromRequest();
+        String filmTitle = searchForm.get("title");
+        User u = getUserFromSession();
+        List<Film> searchFilms = Film.search(filmTitle);
+        List<carousel> allCarousel = carousel.findAll();
+        return ok(index.render(u, searchFilms, env, allCarousel));
     }
 
     public Result film() {

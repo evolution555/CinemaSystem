@@ -4,12 +4,12 @@
 * two arguments, a `String` for the title of the page and an `Html`
 * object to insert into the body of the page.
 *@
-@(title: String, user: models.users.User)(content: Html)
+@(titles: String, user: models.users.User)(content: Html)
 <!DOCTYPE html>
 <html lang="en">
     <head>
         @* Here's where we render the page title `String`. *@
-        <title>@title</title>
+        <title>@titles</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -37,6 +37,18 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-2">
                     <ul class="nav navbar-nav navbar-right">
+
+                       <li> <div class="row" id="searchRow">
+                            <form method="post" id="searchFunction" action="@routes.HomeController.search()" class="navbar-form" role="search">
+                                <div class="input-group add-on">
+                                    <input class="form-control" placeholder="Search" name="title" id="srch-term" type="text">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit" style="background-color: #228DFF;"><i class="glyphicon glyphicon-search"style="color: white;"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                    </div></li>
+
                         <li><a href="@routes.HomeController.index()">Home</a></li>
                         <li><a href="@routes.HomeController.index()#Films">Films</a></li>
                         <li><a href="#">Contact Us</a></li>
