@@ -39,10 +39,6 @@ public class HomeController extends Controller {
         return ok(index.render(u, allFilms, env, allCarousel));
     }
 
-    public Result aboutUs(){
-        return ok(contactUs.render(getUserFromSession()));
-    }
-
     public Result film() {
         User u = getUserFromSession();
         Film f = null;
@@ -71,6 +67,11 @@ public class HomeController extends Controller {
     public Result login() {
         Form<Login> loginForm = formFactory.form(Login.class);
         return ok(login.render(loginForm));
+    }
+
+    public Result about() {
+        User u = getUserFromSession();
+        return ok(about.render(u));
     }
 
     public Result addUserSubmit() {

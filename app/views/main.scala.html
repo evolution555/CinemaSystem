@@ -39,14 +39,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="@routes.HomeController.index()">Home</a></li>
                         <li><a href="@routes.HomeController.index()#Films">Films</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="@routes.HomeController.about()">About Us</a></li>
                         @if(user == null){
                             <li><a href="@routes.HomeController.signUp()">Sign Up</a></li>
                             <li><a href="@routes.HomeController.login()">Sign In</a></li>
                         }else{
                             <li><a href="@routes.LoginController.logout()">Logout</a></li>
                         }
-
+                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
         </nav><!-- /.navbar -->
