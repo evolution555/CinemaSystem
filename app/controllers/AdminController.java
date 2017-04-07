@@ -209,6 +209,22 @@ public class AdminController extends Controller {
         flash("success", "Banner has been deleted.");
         return redirect(routes.AdminController.adminFilm());
     }
+
+    public Result adminMessages() {
+        User u = HomeController.getUserFromSession();
+        List<Messages> allMessages = Messages.findAll();
+        return ok(adminMessages.render(u, env, allMessages));
+    }
+
+    public Result deleteMessages(String id) {
+        Messages.find.ref(id).delete();
+        flash("success", "Message has been deleted.");
+        return redirect(routes.AdminController.adminMessages());
+    }
+
+    public static int getMessageCount() {
+        return Messages.findAll().size();
+    }
 }
 
 

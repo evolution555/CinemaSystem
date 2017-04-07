@@ -25,13 +25,14 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     @if(user != null){
                         <h1>Admin Portal: @user.getName</h1>
                     }
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.LoginController.logout()" role="button">Logout</a>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminMessages()" role="button">Messages <span class="badge">@AdminController.getMessageCount()</span></a>
                     <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminBanners()" role="button">Banners</a>
                     <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminFilm()" role="button">Home</a>
                 </div>

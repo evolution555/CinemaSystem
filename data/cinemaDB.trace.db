@@ -1351,3 +1351,6 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 89 more
+2017-04-07 11:14:54 jdbc[170]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "MESSAGE VARCHAR(255)": "'Review site. A review site is a website on which reviews can be posted about people, businesses, products, or services. These s... (283)"; SQL statement:
+insert into messages (id, name, email, message) values (?,?,?,?) [22001-192]

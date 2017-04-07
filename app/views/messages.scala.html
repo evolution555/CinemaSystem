@@ -1,0 +1,26 @@
+@(addMessageForm: Form[models.Messages], error: String)
+@import helper._
+
+@main("Messages", null) {
+    <div class="m-page scene_element scene_element--fadeinright">
+        <div class="row">
+            <div class="col-lg-5">
+                @if(error != null){
+                    <div class="alert alert-warning">
+                        <strong>@error</strong>
+                    </div>
+                }
+                    @helper.form(action = controllers.routes.HomeController.messageSubmit(), 'class -> "form-horizontal", 'role -> "form") {
+                    @inputText(addMessageForm("name"), '_label -> "Name", 'class -> "form-control")
+                    @inputText(addMessageForm("email"), '_label -> "Email", 'class -> "form-control")
+                    @inputText(addMessageForm("message"), '_label -> "Message", 'class -> "form-control")
+
+                <div class="actions" id="margBottom">
+                    <input type="submit" value="Send Message" class="btn btn-primary">
+                    <a href="@routes.HomeController.index()"> <button class="btn btn-warning">Cancel</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}

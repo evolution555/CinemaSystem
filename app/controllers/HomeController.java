@@ -79,6 +79,30 @@ public class HomeController extends Controller {
         return ok(login.render(loginForm));
     }
 
+    public Result messages() {
+        Form <Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
+        return ok(messages.render(newMessageForm, null));
+    }
+
+    public Result messageSubmit() {
+
+        Form <Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
+        Form errorForm = formFactory.form().bindFromRequest();
+
+        if (newMessageForm.hasErrors()) {
+            return badRequest(messages.render(errorForm, "Error with form."));
+        }
+        Messages m = newMessageForm.get();
+        m.save();
+        flash("success");
+        User u = getUserFromSession();
+        List<Film> allFilms = Film.findAll();
+        List<carousel> allCarousel = carousel.findAll();
+        return ok(index.render(u, allFilms, env, allCarousel));
+    }
+
+
+
     public Result addUserSubmit() {
         DynamicForm newUserForm = formFactory.form().bindFromRequest();
         Form errorForm = formFactory.form().bindFromRequest();
@@ -108,7 +132,10 @@ public class HomeController extends Controller {
         return redirect(controllers.routes.HomeController.index());
     }
 
+
+
     public static User getUserFromSession() {
         return User.getUserById(session().get("email"));
     }
 }
+
