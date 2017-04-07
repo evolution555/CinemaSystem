@@ -225,6 +225,26 @@ public class AdminController extends Controller {
     public static int getMessageCount() {
         return Messages.findAll().size();
     }
+
+    public Result adminAddStaff() {
+        User u = HomeController.getUserFromSession();
+        Form<Staff> addStaffForm = formFactory.form(Staff.class);
+        return ok(adminAddStaff.render(addStaffForm,u,null));
+    }
+
+    public Result addStaffSubmit() {
+        User u = HomeController.getUserFromSession();
+        Form<Staff> newStaffForm = formFactory.form(Staff.class).bindFromRequest();
+        if(newStaffForm.hasErrors()) {
+            return badRequest(adminAddStaff.render(newStaffForm,u,null));
+        }
+
+        Staff newStaff = newStaffForm.get();
+        newStaff.save();
+        flash("success", "Staff " + newStaff.getName() + " has been added!");
+        return redirect(controllers.routes.HomeController.aboutus());
+    }
+
 }
 
 
