@@ -241,7 +241,7 @@ public class AdminController extends Controller {
     public Result adminAddStaff() {
         User u = HomeController.getUserFromSession();
         Form<Staff> addStaffForm = formFactory.form(Staff.class);
-        return ok(adminAddStaff.render(addStaffForm, u, null));
+        return ok(adminAddStaff.render(addStaffForm,u, null));
     }
 
 
@@ -261,29 +261,30 @@ public class AdminController extends Controller {
             newStaff.update();
         }
         flash("success", "Staff " + newStaff.getName() + " has been added/updated!");
-        return redirect(controllers.routes.HomeController.aboutus());
+        return redirect(controllers.routes.AdminController.adminStaff());
     }
 
     public Result adminDeleteStaff(Long id) {
         Staff.find.ref(id).delete();
         flash("success", "Staff has been Removed");
-        return redirect(routes.HomeController.aboutus());
+        return redirect(routes.AdminController.adminStaff());
     }
+
+
 
     @Transactional
-    public Result adminUpdateStaff(Long id) {
-        User u = HomeController.getUserFromSession();
-        Staff s;
-        Form<Staff> staffForm;
-        try {
-            s = Staff.find.byId(id);
-            staffForm = formFactory.form(Staff.class).fill(s);
-        } catch (Exception ex) {
-            return badRequest("error");
-        }
-        return ok(adminAddStaff.render(staffForm, u, null));
-    }
-
+   public Result adminUpdateStaff(Long id) {
+               User u = HomeController.getUserFromSession();
+                Staff s;
+                Form<Staff> staffForm;
+                try {
+                        s = Staff.find.byId(id);
+                       staffForm = formFactory.form(Staff.class).fill(s);
+                  } catch (Exception ex) {
+                      return badRequest("error");
+                   }
+                return ok(adminAddStaff.render(staffForm, u, null));
+            }
 
 }
 
