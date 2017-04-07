@@ -12,6 +12,14 @@ create table film (
   constraint pk_film primary key (title)
 );
 
+create table messages (
+  id                            varchar(255) not null,
+  name                          varchar(255),
+  email                         varchar(255),
+  message                       varchar(255),
+  constraint pk_messages primary key (id)
+);
+
 create table showing (
   showing_id                    varchar(255) not null,
   title                         varchar(255),
@@ -52,6 +60,8 @@ alter table showing_time drop constraint if exists fk_showing_time_showingid;
 drop index if exists ix_showing_time_showingid;
 
 drop table if exists film;
+
+drop table if exists messages;
 
 drop table if exists showing;
 
