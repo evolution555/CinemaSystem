@@ -132,10 +132,15 @@ public class HomeController extends Controller {
         return redirect(controllers.routes.HomeController.index());
     }
 
-
-
     public static User getUserFromSession() {
         return User.getUserById(session().get("email"));
+    }
+
+    public Result aboutus() {
+        User u = getUserFromSession();
+        // Get list of all categories in ascending order
+        List<Staff> staffList = Staff.findAll();
+        return ok(aboutus.render(u,staffList));
     }
 }
 

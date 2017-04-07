@@ -34,6 +34,7 @@ public class AdminController extends Controller {
         return ok(adminFilm.render(u, allFilms, env, allCarosels));
     }
 
+
     public Result adminAddFilm() {
         Form<Film> addFilmForm = formFactory.form(Film.class);
         User u = HomeController.getUserFromSession();
@@ -133,13 +134,13 @@ public class AdminController extends Controller {
 
         Showing s = null;
         List<Showing> showings = Showing.findAll();
-        for(Showing show : showings){
-            if(show.getDate().equals(newShowingForm.get("date")) && show.getTitle().equals(newShowingForm.get("title"))){
+        for (Showing show : showings) {
+            if (show.getDate().equals(newShowingForm.get("date")) && show.getTitle().equals(newShowingForm.get("title"))) {
                 s = show;
             }
         }
 
-        if(s == null) {
+        if (s == null) {
             s = new Showing(Integer.parseInt(newShowingForm.get("screen")), newShowingForm.get("date"),
                     newShowingForm.get("title")); //newShowingForm.get();
         }
@@ -149,6 +150,7 @@ public class AdminController extends Controller {
         }
         return redirect(routes.AdminController.adminFilm());
     }
+
     //need to fill html form with showing details.
     @Transactional
     public Result updateShowing(String title) {
@@ -163,6 +165,7 @@ public class AdminController extends Controller {
         }
         return ok(adminAddShowing.render(HomeController.getUserFromSession(), null));
     }
+
     //Needs on delete cascade
     public Result deleteShowing(String id) {
         Showing.find.ref(id).delete();
@@ -171,17 +174,19 @@ public class AdminController extends Controller {
     }
 
     //Carousel
-    public Result adminBanners(){
+    public Result adminBanners() {
         User u = HomeController.getUserFromSession();
         List<Film> allFilms = Film.findAll();
         List<carousel> allCarousels = carousel.findAll();
         return ok(adminBanners.render(u, allFilms, env, allCarousels));
     }
+
     public Result adminAddCarousel() {
         Form<carousel> addCarouselForm = formFactory.form(carousel.class);
         User u = HomeController.getUserFromSession();
         return ok(adminAddCarousel.render(addCarouselForm, u, null));
     }
+
     public Result addCarouselSubmit() {
         Form<carousel> addCarouselForm = formFactory.form(carousel.class).bindFromRequest();
         if (addCarouselForm.hasErrors()) {
@@ -204,6 +209,7 @@ public class AdminController extends Controller {
         flash("success", "Banner Added");
         return redirect(routes.AdminController.adminFilm());
     }
+
     public Result deleteBanners(String title) {
         carousel.find.ref(title).delete();
         flash("success", "Banner has been deleted.");
@@ -225,6 +231,60 @@ public class AdminController extends Controller {
     public static int getMessageCount() {
         return Messages.findAll().size();
     }
+
+    public Result adminStaff() {
+        User u = HomeController.getUserFromSession();
+        List<Staff> allStaff = Staff.findAll();
+        return ok(adminStaff.render(u, allStaff));
+    }
+
+    public Result adminAddStaff() {
+        User u = HomeController.getUserFromSession();
+        Form<Staff> addStaffForm = formFactory.form(Staff.class);
+        return ok(adminAddStaff.render(addStaffForm, u, null));
+    }
+
+
+    public Result addStaffSubmit() {
+        User u = HomeController.getUserFromSession();
+        Form<Staff> newStaffForm = formFactory.form(Staff.class).bindFromRequest();
+        if (newStaffForm.hasErrors()) {
+            return badRequest(adminAddStaff.render(newStaffForm, u, null));
+        }
+
+        Staff newStaff = newStaffForm.get();
+
+        if(newStaff.getId() == null) {
+            newStaff.save();
+        }
+        else if (newStaff.getId() != null) {
+            newStaff.update();
+        }
+        flash("success", "Staff " + newStaff.getName() + " has been added/updated!");
+        return redirect(controllers.routes.HomeController.aboutus());
+    }
+
+    public Result adminDeleteStaff(Long id) {
+        Staff.find.ref(id).delete();
+        flash("success", "Staff has been Removed");
+        return redirect(routes.HomeController.aboutus());
+    }
+
+    @Transactional
+    public Result adminUpdateStaff(Long id) {
+        User u = HomeController.getUserFromSession();
+        Staff s;
+        Form<Staff> staffForm;
+        try {
+            s = Staff.find.byId(id);
+            staffForm = formFactory.form(Staff.class).fill(s);
+        } catch (Exception ex) {
+            return badRequest("error");
+        }
+        return ok(adminAddStaff.render(staffForm, u, null));
+    }
+
+
 }
 
 

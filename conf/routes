@@ -24,6 +24,12 @@ GET         /delMovie/:title                  controllers.AdminController.delete
 GET         /messages                         controllers.HomeController.messages
 GET         /adminMessages                    controllers.AdminController.adminMessages
 GET         /deleteMessages/:id                controllers.AdminController.deleteMessages(id : String)
+GET         /aboutus                          controllers.HomeController.aboutus
+GET         /adminStaff                       controllers.AdminController.adminStaff
+GET         /adminAddStaff                    controllers.AdminController.adminAddStaff
+GET         /delStaff/:id                     controllers.AdminController.adminDeleteStaff(id: Long)
+GET         /adminUpdateStaff/:id             controllers.AdminController.adminUpdateStaff(id:Long)
+POST        /addStaffSubmit                   controllers.AdminController.addStaffSubmit
 POST        /messageSubmit                    controllers.HomeController.messageSubmit
 POST        /addCarouselSubmit                controllers.AdminController.addCarouselSubmit
 POST        /adminShowingSubmit               controllers.AdminController.adminShowingSubmit

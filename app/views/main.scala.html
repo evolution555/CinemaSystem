@@ -31,33 +31,35 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" id="blue-title" href="@routes.HomeController.index()" style="font-family: 'Audiowide', cursive;font-size: 25px; ">EMD Cinemas</a>
+                    <a class="navbar-brand" id="blue-title" href="@routes.HomeController.index()" style="font-family: 'Audiowide', cursive;
+                        font-size: 25px; ">EMD Cinemas</a>
                 </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse-2">
                     <ul class="nav navbar-nav navbar-right">
 
-                       <li> <div class="row" id="searchRow">
+                        <li> <div class="row" id="searchRow">
                             <form method="post" id="searchFunction" action="@routes.HomeController.search()" class="navbar-form" role="search">
                                 <div class="input-group add-on">
                                     <input class="form-control" placeholder="Search" name="title" id="srch-term" type="text">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit" style="background-color: #228DFF;"><i class="glyphicon glyphicon-search"style="color: white;"></i></button>
+                                        <button class="btn btn-default" type="submit" style="background-color: #228DFF;"><i class="glyphicon glyphicon-search" style="color: white;"></i></button>
                                     </div>
                                 </div>
                             </form>
-                    </div></li>
+                        </div></li>
 
                         <li><a href="@routes.HomeController.index()">Home</a></li>
                         <li><a href="@routes.HomeController.index()#Films">Films</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        @if(user == null){
+                        <li><a href="@routes.HomeController.aboutus()">About Us</a></li>
+                        @if(user == null) {
                             <li><a href="@routes.HomeController.signUp()">Sign Up</a></li>
                             <li><a href="@routes.HomeController.login()">Sign In</a></li>
-                        }else{
+                        } else {
                             <li><a href="@routes.LoginController.logout()">Logout</a></li>
                         }
+                    </ul>
 
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
@@ -66,7 +68,6 @@
         <div class="container">
         @content
         </div>
-
 
 
         <footer>
