@@ -80,13 +80,13 @@ public class HomeController extends Controller {
     }
 
     public Result messages() {
-        Form <Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
+        Form<Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
         return ok(messages.render(newMessageForm, null));
     }
 
     public Result messageSubmit() {
 
-        Form <Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
+        Form<Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
         Form errorForm = formFactory.form().bindFromRequest();
 
         if (newMessageForm.hasErrors()) {
@@ -100,7 +100,6 @@ public class HomeController extends Controller {
         List<carousel> allCarousel = carousel.findAll();
         return ok(index.render(u, allFilms, env, allCarousel));
     }
-
 
 
     public Result addUserSubmit() {
@@ -138,9 +137,8 @@ public class HomeController extends Controller {
 
     public Result aboutus() {
         User u = getUserFromSession();
-        // Get list of all categories in ascending order
         List<Staff> staffList = Staff.findAll();
-        return ok(aboutus.render(u,staffList));
+        return ok(aboutus.render(u, staffList, env));
     }
 }
 

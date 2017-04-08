@@ -1,69 +1,79 @@
-body{
+body {
     background-color: whitesmoke;
     font-family: 'Ubuntu', sans-serif;
 }
 
-#blue-title{
+#blue-title {
     color: black;
     -webkit-animation: neon2 2s ease-in-out infinite alternate;
     -moz-animation: neon2 2s ease-in-out infinite alternate;
     animation: neon2 2s ease-in-out infinite alternate;
 }
-#blue-hover:hover{
+
+#blue-hover:hover {
     color: #6EC2F6;
     transition: 1000s;
 }
 
-.navbar-default .navbar-nav > li > a:hover{
+.navbar-default .navbar-nav > li > a:hover {
     color: #6EC2F6;
     -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
     -moz-animation: neon2 1.5s ease-in-out infinite alternate;
     animation: neon2 1.5s ease-in-out infinite alternate;
 }
-.navbar-default .navbar-nav > li > a{
+
+.navbar-default .navbar-nav > li > a {
     color: #ffffff;
     border-color: black;
     background-color: black;
 }
-.page-header{
+
+.page-header {
     border-color: #6EC2F6;
 }
 
-
-#black-nav{
+#black-nav {
     background-color: black;
 }
-.btn-success{
+
+.btn-success {
     background-color: #6EC2F6;
     border-radius: 300px;
     text-transform: uppercase;
     border-color: transparent;
 }
-.navbar-default .navbar-toggle .icon-bar{
-   color:white;
+
+.navbar-default .navbar-toggle .icon-bar {
+    color: white;
 }
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background-color: black;
 }
-#posterSize img{
+
+#posterSize img {
     height: 350px;
     width: 282px;
     padding: 10px;
 }
-#footerid{
+
+#footerid {
     background-color: black;
     height: 50px;
     width: auto;
 }
+
 footer {
     text-align: center;
 }
+
 footer span.copyright {
     line-height: 40px;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     text-transform: none;
 }
+
 footer ul.quicklinks {
     margin-bottom: 0;
     line-height: 40px;
@@ -71,9 +81,11 @@ footer ul.quicklinks {
     text-transform: uppercase;
     text-transform: none;
 }
+
 ul.social-buttons {
     margin-bottom: 0;
 }
+
 ul.social-buttons li a {
     display: block;
     background-color: #222222;
@@ -88,51 +100,60 @@ ul.social-buttons li a {
     -moz-transition: all 0.3s;
     transition: all 0.3s;
 }
+
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
     background-color: #fed136;
 }
+
 .btn:focus,
 .btn:active,
 .btn.active,
 .btn:active:focus {
     outline: none;
 }
-ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li a:active{
+
+ul.social-buttons li a:hover, ul.social-buttons li a:focus, ul.social-buttons li a:active {
     background-color: #6EC2F6;
 }
-ul.social-buttons{
+
+ul.social-buttons {
     padding: 5px;
 }
-.btn-primary{
+
+.btn-primary {
     color: white;
     background-color: #6EC2F6;
     border-radius: 300px;
     text-transform: uppercase;
     border-color: transparent;
-    margin:5px;
+    margin: 5px;
 }
-#right-btn{
+
+#right-btn {
     float: right;
 }
-.btn-danger{
+
+.btn-danger {
     border-radius: 300px;
     text-transform: uppercase;
-    margin:5px;
-    border-color: transparent;
-}
-.btn-warning {
-    border-radius: 300px;
-    text-transform: uppercase;
-    margin:5px;
+    margin: 5px;
     border-color: transparent;
 }
 
-#margBottom{
+.btn-warning {
+    border-radius: 300px;
+    text-transform: uppercase;
+    margin: 5px;
+    border-color: transparent;
+}
+
+#margBottom {
     margin-bottom: 20px;
 }
-h1{
+
+h1 {
     font-family: 'Audiowide', cursive;
 }
 
@@ -179,7 +200,6 @@ h1{
  * Don't forget to add vendor prefixes!
  */
 
-
 /** Basic styles for an animated element */
 .scene_element {
     animation-duration: 1s;
@@ -187,7 +207,6 @@ h1{
     animation-fill-mode: both;
 
 }
-
 
 /** An element that fades in */
 .scene_element--fadein {
@@ -213,6 +232,7 @@ h1{
         text-shadow: 0 0 5px #fff, 0 0 00px #fff, 0 0 0px #fff, 0 0 00px #228DFF, 0 0 0px #228DFF, 0 0 0px #228DFF, 0 0 50px #228DFF, 0 0 30px #228DFF;
     }
 }
+
 /*glow for mozilla*/
 @-moz-keyframes neon2 {
     from {
@@ -230,3 +250,177 @@ h1{
     clear: both;
 }
 
+.staffContent {
+    padding-left: 9%;
+    padding-right: 9%;
+    padding-bottom: 3%;
+}
+
+.addStaffContent {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.successMsg {
+    padding-left: 30%;
+    padding-right: 30%;
+    text-align: center;
+}
+
+.aboutHeading {
+    text-align: center;
+}
+
+#picSize img {
+    height: 200px;
+    width: 200px;
+}
+
+.addNewStaffH1 {
+    text-align: center;
+}
+
+.aboutIcon {
+    text-align: center;
+    padding: 30px;
+}
+
+.aboutContent {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.aboutParagraph {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+/********** About Popup2 container ***********/
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/********** ABOUT Popup2 container ***********/
+.popup2 {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup2 .popuptext2 {
+    visibility: hidden;
+    width: 180px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup2 .popuptext2::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup2 .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
