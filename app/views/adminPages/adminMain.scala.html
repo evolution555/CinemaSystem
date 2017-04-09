@@ -26,26 +26,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    @if(user != null){
-                        <h1>Admin Portal: @user.getName</h1>
-                    }
+                @if(user != null) {
+                    <h1>Admin Portal: @user.getName</h1>
+                }
                 </div>
-                <div class="col-lg-6">
-                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.LoginController.logout()" role="button">Logout</a>
-                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminMessages()" role="button">Messages <span class="badge">@AdminController.getMessageCount()</span></a>
-                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminBanners()" role="button">Banners</a>
-                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminFilm()" role="button">Home</a>
+
+                <div>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminMessages()" role="button">
+                        Messages <span class="badge">@AdminController.getMessageCount()</span></a>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminBanners()" role="button">
+                        Banners</a>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminFilm()" role="button">
+                        Film</a>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminStaff()" role="button">
+                        Staff</a>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.HomeController.index()" role="button">
+                        Home</a>
+                    <a class="btn btn-lg btn-primary" id="right-btn" href="@routes.LoginController.logout()" role="button">
+                        Logout</a>
                 </div>
             </div>
 
-
-            @content
         </div>
 
+
+        @content
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+
+
     </body>
 </html>
+
+

@@ -36,6 +36,17 @@ create table showing_time (
 );
 create sequence showing_time_seq increment by 1;
 
+create table staff (
+  id                            bigint not null,
+  name                          varchar(255),
+  job_role                      varchar(255),
+  description                   varchar(255),
+  email                         varchar(255),
+  number                        varchar(255),
+  constraint pk_staff primary key (id)
+);
+create sequence staff_seq;
+
 create table user (
   email                         varchar(255) not null,
   name                          varchar(255),
@@ -67,6 +78,9 @@ drop table if exists showing;
 
 drop table if exists showing_time;
 drop sequence if exists showing_time_seq;
+
+drop table if exists staff;
+drop sequence if exists staff_seq;
 
 drop table if exists user;
 
