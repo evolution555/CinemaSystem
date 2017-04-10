@@ -1,7 +1,6 @@
 package controllers;
 
 import controllers.*;
-import controllers.routes;
 import play.api.Environment;
 import play.mvc.*;
 
@@ -41,6 +40,15 @@ public class HomeController extends Controller {
     }
 
 
+    public Result search() {
+        DynamicForm searchForm = formFactory.form().bindFromRequest();
+        String filmTitle = searchForm.get("title");
+        User u = getUserFromSession();
+        List<Film> searchFilms = Film.search(filmTitle);
+        List<carousel> allCarousel = carousel.findAll();
+        return ok(index.render(u, searchFilms, env, allCarousel));
+    }
+
     public Result film() {
         User u = getUserFromSession();
         Film f = null;
@@ -57,40 +65,9 @@ public class HomeController extends Controller {
     public Result booking(String title, String sId, String time) {
         Film f = Film.find.byId(title);
         Showing s = Showing.find.byId(sId);
-        Booking b = new Booking();
-        DynamicForm newBookingForm = formFactory.form().bindFromRequest();
-        return ok(booking.render(b, newBookingForm, getUserFromSession(), f, env, s, time, null));
+        return ok(booking.render(getUserFromSession(), f, env, s, time));
     }
 
-    public Result bookingSubmit() {
-        DynamicForm newBookingForm = formFactory.form().bindFromRequest();
-        Film f = null;
-        Showing s = null;
-        String time = null;
-        Booking bk = null;
-        String error = null;
-        /*
-        if (newBookingForm.hasErrors()) {
-            return badRequest(booking.render(bk, newBookingForm, getUserFromSession(), f, env, s, time, "Error in form."));
-        }*/
-        //Adding Booking to database
-        int qty = Integer.parseInt(newBookingForm.get("qty"));
-        if (qty == 0) {
-            flash("error", " Invalid amount selected.");
-            List<Film> allFilms = Film.findAll();
-            List<carousel> allCarousel = carousel.findAll();
-            return ok(index.render(getUserFromSession(), allFilms, env, allCarousel));
-        }
-        String title = newBookingForm.get("title");
-        String timeIn = newBookingForm.get("time");
-        String date = newBookingForm.get("date");
-
-        Booking b = new Booking(qty, timeIn, date, title);
-        DynamicForm newPaymentForm = formFactory.form();
-        b.save();
-        flash("success");
-        return ok(payment.render(b, newPaymentForm, getUserFromSession(), env, error)); // change to payments
-    }
 
     public Result signUp() {
         Form<User> adduserForm = formFactory.form(User.class);
@@ -102,12 +79,35 @@ public class HomeController extends Controller {
         return ok(login.render(loginForm));
     }
 
+    public Result messages() {
+        Form<Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
+        return ok(messages.render(newMessageForm, null));
+    }
+
+    public Result messageSubmit() {
+
+        Form<Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
+        Form errorForm = formFactory.form().bindFromRequest();
+
+        if (newMessageForm.hasErrors()) {
+            return badRequest(messages.render(errorForm, "Error with form."));
+        }
+        Messages m = newMessageForm.get();
+        m.save();
+        flash("success");
+        User u = getUserFromSession();
+        List<Film> allFilms = Film.findAll();
+        List<carousel> allCarousel = carousel.findAll();
+        return ok(index.render(u, allFilms, env, allCarousel));
+    }
+
+
     public Result addUserSubmit() {
         DynamicForm newUserForm = formFactory.form().bindFromRequest();
         Form errorForm = formFactory.form().bindFromRequest();
         if (newUserForm.hasErrors()) {
             return badRequest(signUp.render(errorForm, "Error with form."));
-    }
+        }
         if (newUserForm.get("email").equals("") || newUserForm.get("name").equals("")) {
             return badRequest(signUp.render(errorForm, "Please enter an email and a name."));
         }
@@ -135,4 +135,10 @@ public class HomeController extends Controller {
         return User.getUserById(session().get("email"));
     }
 
+    public Result aboutus() {
+        User u = getUserFromSession();
+        List<Staff> staffList = Staff.findAll();
+        return ok(aboutus.render(u, staffList, env));
+    }
 }
+

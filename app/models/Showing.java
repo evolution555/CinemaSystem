@@ -2,7 +2,7 @@ package models;
 
 import java.util.*;
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
+
 import com.avaje.ebeaninternal.server.lib.util.Str;
 import play.data.format.*;
 import play.data.validation.*;
@@ -19,10 +19,9 @@ public class Showing extends Model{
     @ManyToOne()
     private String title;
     private int screen;
-    @Formats.DateTime(pattern="dd/mm/yyyy'T'HH:mm:ss")
     private String date;
 
-    @OneToMany (mappedBy = "showing", cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "showing")
     private List<ShowingTime> times = new ArrayList<>();
 
     public Showing(){

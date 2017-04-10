@@ -1,25 +1,15 @@
 @(user: models.users.User, films: List[models.Film], env: play.api.Environment, carousel: List[models.carousel])
-@main("Home", user) {
-</div>
+@main("Index", user) {
+    <!--</div>  Use this closing div to make the carousel the full with of the page-->
     <div class="row">
         <div class="col-lg-12">
                 <!-- Carousel
     ================================================== -->
             @if(flash().containsKey("success")) {
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="alert alert-success" style="text-align: center">
+                    <div class="col-xs-6">
+                        <div class="alert alert-success">
                             <strong>@flash().get("success")</strong>
-                        </div>
-                    </div>
-                </div>
-
-            }
-            @if(flash().containsKey("error")) {
-                <div class="row">
-                    <div class="col-xs-12" style="text-align: center">
-                        <div class="alert alert-danger">
-                            <strong>@flash().get("error")</strong>
                         </div>
                     </div>
                 </div>
@@ -90,4 +80,3 @@
 
 
 }
-    <!--Created by Evan-->
