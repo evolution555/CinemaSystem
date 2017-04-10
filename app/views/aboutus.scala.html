@@ -1,0 +1,107 @@
+@(user: models.users.User, staff: List[models.Staff], env: play.api.Environment)
+
+<!-- Pass page title and content {html between braces} to the main view -->
+@main("About Us", user) {
+    <!-- HTML content for the index view -->
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>About Us</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+            <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+            <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
+            <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+            <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        </head>
+
+
+        <body>
+            <div class="aboutContent">
+                <div class="m-page scene_element scene_element--fadeinright">
+                    <div class="centered">
+                        <div class="panel panel-default credit-card-box">
+                            <div class="panel-body">
+                                <div class="aboutHeading"><h1 class="page-header">About Us</h1></div>
+                                <div class="aboutParagraph">
+                                    EMD Cinema (EMD) is a leader in the premium cinema booking system in Ireland.
+                                    EMD delivers the best choice of content, combined with the best technology in the best environment.
+                                    EMD Cinema offers a range of content, in addition to highly anticipated blockbusters.
+                                    EMD was founded in Ireland by 2nd year students who are studying BSc Computing in IT Tallaght.
+                                    Over the years EMD has won numerous accolades for its service and innovations, including more recently International Booking System of the Year at CineEurope 2017 and Best Show Listings of the Year 2016.
+                                </div>
+                                <div class="aboutHeading">
+                                    <div><h1 class="page-header">Our Programmers & Developers</h1></div>
+                                </div>
+
+                                <div class="staffContent">
+                                @for(s <- staff) {
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h2>@s.getName</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="m-header scene_element scene_element--fadein">
+                                            <div class="col-lg-3 col-sm-12" id="picSize">
+                                            @if(env.resource("public/images/staffImages/" + s.getId + ".jpg").isDefined) {
+                                                <img src="/assets/images/staffImages/@(s.getId + ".jpg")" />
+                                            } else {
+                                                <img src="/assets/images/staffImages/Null.jpg" />
+                                            }
+                                            </div>
+                                        </div>
+                                        <div class="m-header scene_element scene_element--fadeinright">
+                                            <div class="col-lg-9">
+                                                <p><b>JOB ROLE:</b>
+                                                    @s.getJobRole</p>
+                                                <p><b>ABOUT MYSELF:</b>
+                                                    @s.getDescription</p>
+                                                <p><b>EMAIL:</b>
+                                                    @s.getEmail</p>
+                                                <p><b>PHONE NUMBER:</b>
+                                                    @s.getNumber</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                </div>
+                            </div>
+                            <div class="aboutIcon">
+                                <h2>Our Number & Email!</h2>
+
+                                <div class="popup" onclick="myFunction()">
+                                    <img src="/assets/images/About/phoneIcon.png" height="100" width="100"/>
+                                    <span class="popuptext" id="myPopup">(01) 555 0000</span>
+                                </div>
+
+                                <div class="popup2" onclick="myFunction2()">
+                                    <img src="/assets/images/About/email1.png" height="70" width="85"/>
+                                    <span class="popuptext2" id="myPopup2">EMD@@Admin.com</span>
+                                </div>
+                            </div>
+
+                            <script>
+                                    // When the user clicks on div, open the popup
+                                    function myFunction() {
+                                        var popup = document.getElementById("myPopup");
+                                        popup.classList.toggle("show")
+                                    }
+
+                                    function myFunction2() {
+                                        var popup2 = document.getElementById("myPopup2");
+                                        popup2.classList.toggle("show")
+                                    }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
+
+
+        <!-- End of content for main -->
+}
