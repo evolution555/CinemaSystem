@@ -229,7 +229,83 @@ public class AdminController extends Controller {
     public static int getMessageCount() {
         return Messages.findAll().size();
     }
+    public Result adminStaff() {
+        User u = HomeController.getUserFromSession();
+        List<Staff> allStaff = Staff.findAll();
+        return ok(adminStaff.render(u, allStaff, env));
+    }
 
+    public Result adminAddStaff() {
+        User u = HomeController.getUserFromSession();
+        Form<Staff> addStaffForm = formFactory.form(Staff.class);
+        return ok(adminAddStaff.render(addStaffForm, u, null));
+    }
+
+
+    public Result addStaffSubmit() {
+        User u = HomeController.getUserFromSession();
+        Form<Staff> newStaffForm = formFactory.form(Staff.class).bindFromRequest();
+        if (newStaffForm.hasErrors()) {
+            return badRequest(adminAddStaff.render(newStaffForm, u, null));
+        }
+
+        Staff newStaff = newStaffForm.get();
+
+        if (newStaff.getId() == null) {
+            newStaff.save();
+        } else if (newStaff.getId() != null) {
+            newStaff.update();
+        }
+
+        Http.MultipartFormData data = request().body().asMultipartFormData();
+        FilePart staffImage = data.getFile("upload");
+
+        flash("success", "Staff: " + newStaff.getName() + saveStaffFile(newStaff.getId(), staffImage));
+        return redirect(routes.AdminController.adminStaff());
+
+    }
+
+    public String saveStaffFile(Long id, FilePart<File> upload) {
+        if (upload != null) {
+            String fileName = upload.getFilename();
+            String ext = "";
+
+            String mimeType = upload.getContentType();
+
+            if (mimeType.startsWith("image/")) {
+                int i = fileName.lastIndexOf('.');
+                if (i >= 0) {
+                    ext = fileName.substring(i + 1);
+                }
+
+                File file = upload.getFile();
+                file.renameTo(new File("public/images/staffImages/" + id + "." + ext));
+            }
+            return " Has Been Added | Updated";
+        }
+        return "No File";
+    }
+
+    public Result adminDeleteStaff(Long id) {
+        Staff.find.ref(id).delete();
+        flash("success", "Staff has been Removed");
+        return redirect(routes.AdminController.adminStaff());
+    }
+
+
+    @Transactional
+    public Result adminUpdateStaff(Long id) {
+        User u = HomeController.getUserFromSession();
+        Staff s;
+        Form<Staff> staffForm;
+        try {
+            s = Staff.find.byId(id);
+            staffForm = formFactory.form(Staff.class).fill(s);
+        } catch (Exception ex) {
+            return badRequest("error");
+        }
+        return ok(adminAddStaff.render(staffForm, u, null));
+    }
 
 
 }

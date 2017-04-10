@@ -161,4 +161,10 @@ public class HomeController extends Controller {
         List<carousel> allCarousel = carousel.findAll();
         return ok(index.render(u, searchFilms, env, allCarousel));
     }
+    public Result aboutus() {
+        User u = getUserFromSession();
+        // Get list of all categories in ascending order
+        List<Staff> staffList = Staff.findAll();
+        return ok(aboutus.render(u,staffList, env));
+    }
 }
