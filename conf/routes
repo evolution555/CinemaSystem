@@ -1,46 +1,39 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
+#Created by evan
 
 # An example controller showing a sample home page
-GET         /                                 controllers.HomeController.index
-GET         /film                             controllers.HomeController.film
-GET         /adminFilm                        controllers.AdminController.adminFilm
-GET         /adminBanners                     controllers.AdminController.adminBanners
-GET         /adminAddCarousel                 controllers.AdminController.adminAddCarousel
-GET         /adminDeleteBanners/:title        controllers.AdminController.deleteBanners(title: String)
-GET         /adminAddFilm                     controllers.AdminController.adminAddFilm
-GET         /booking/:title/:id/:time         controllers.HomeController.booking(title : String, id: String, time: String)
-GET         /adminShowing/:title              controllers.AdminController.adminShowing(title: String)
-GET         /adminAddShowing/:title           controllers.AdminController.adminAddShowing(title: String)
-GET         /updateShowing/:title             controllers.AdminController.updateShowing(title: String)
-GET         /deleteShowing/:id                controllers.AdminController.deleteShowing(id: String)
-GET         /signUp                           controllers.HomeController.signUp
-GET         /login                            controllers.HomeController.login
-GET         /logout                           controllers.LoginController.logout
-GET         /viewMovie/:title                 controllers.HomeController.viewMovie(title: String)
-GET         /updateMovie/:title               controllers.AdminController.updateMovie(title: String)
-GET         /delMovie/:title                  controllers.AdminController.deleteMovie(title: String)
-GET         /messages                         controllers.HomeController.messages
-GET         /adminMessages                    controllers.AdminController.adminMessages
-GET         /deleteMessages/:id                controllers.AdminController.deleteMessages(id : String)
-GET         /aboutus                          controllers.HomeController.aboutus
-GET         /adminStaff                       controllers.AdminController.adminStaff
-GET         /adminAddStaff                    controllers.AdminController.adminAddStaff
-GET         /delStaff/:id                     controllers.AdminController.adminDeleteStaff(id: Long)
-GET         /adminUpdateStaff/:id             controllers.AdminController.adminUpdateStaff(id:Long)
-POST        /addStaffSubmit                   controllers.AdminController.addStaffSubmit
-POST        /messageSubmit                    controllers.HomeController.messageSubmit
-POST        /addCarouselSubmit                controllers.AdminController.addCarouselSubmit
-POST        /adminShowingSubmit               controllers.AdminController.adminShowingSubmit
-POST        /addUserSubmit                    controllers.HomeController.addUserSubmit
-POST        /loginSubmit                      controllers.LoginController.loginSubmit
-POST        /addFilmSubmit                    controllers.AdminController.addFilmSubmit
-POST        /search                           controllers.HomeController.search
+GET         /                              controllers.HomeController.index
+GET         /film                          controllers.HomeController.film
+GET         /adminFilm                     controllers.AdminController.adminFilm
+GET         /adminBanners                  controllers.AdminController.adminBanners
+GET         /adminAddCarousel              controllers.AdminController.adminAddCarousel
+GET         /adminDeleteBanners/:title     controllers.AdminController.deleteBanners(title: String)
+GET         /adminAddFilm                  controllers.AdminController.adminAddFilm
+GET         /booking/:title/:id/:time      controllers.HomeController.booking(title : String, id: String, time: String)
+GET         /payment                       controllers.PaymentController.payment
+GET         /adminShowing/:title           controllers.AdminController.adminShowing(title: String)
+GET         /adminAddShowing/:title        controllers.AdminController.adminAddShowing(title: String)
+GET         /updateShowing/:title          controllers.AdminController.updateShowing(title: String)
+GET         /deleteShowing/:id             controllers.AdminController.deleteShowing(id: String)
+GET         /signUp                        controllers.HomeController.signUp
+GET         /login                         controllers.HomeController.login
+GET         /logout                        controllers.LoginController.logout
+GET         /viewMovie/:title              controllers.HomeController.viewMovie(title: String)
+GET         /updateMovie/:title            controllers.AdminController.updateMovie(title: String)
+GET         /delMovie/:title               controllers.AdminController.deleteMovie(title: String)
+POST        /paymentSubmit                 controllers.PaymentController.paymentSubmit
+POST        /bookingSubmit                 controllers.HomeController.bookingSubmit
+POST        /addCarouselSubmit             controllers.AdminController.addCarouselSubmit
+POST        /adminShowingSubmit            controllers.AdminController.adminShowingSubmit
+POST        /addUserSubmit                 controllers.HomeController.addUserSubmit
+POST        /loginSubmit                   controllers.LoginController.loginSubmit
+POST        /addFilmSubmit                 controllers.AdminController.addFilmSubmit
 # An example controller showing how to use dependency injection
-GET         /count                            controllers.CountController.count
+GET         /count                         controllers.CountController.count
 # An example controller showing how to write asynchronous code
-GET         /message                          controllers.AsyncController.message
+GET         /message                       controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                     controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file                  controllers.Assets.versioned(path="/public", file: Asset)

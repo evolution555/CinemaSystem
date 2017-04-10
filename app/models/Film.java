@@ -6,7 +6,9 @@ import play.data.format.*;
 import play.data.validation.*;
 
 import com.avaje.ebean.*;
-
+/**
+ * Created by evan.
+ */
 @Entity
 public class Film extends Model{
     @OneToMany(mappedBy = "titleId")
@@ -21,13 +23,6 @@ public class Film extends Model{
 
     public static List<Film> findAll(){
         return Film.find.all();
-    }
-
-    public static List<Film> search(String title) {
-        return Film.find.where()
-                .ilike("title", "%" + title + "%")
-                .orderBy("title asc")
-                .findList();
     }
 
 
