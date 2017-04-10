@@ -10,17 +10,6 @@
         </div>
 
     }
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="span7 text-center">
-                <h1 class="page-header" style="padding-top: 10px;">Add New Film</h1>
-            </div>
-        </div>
-    </div>
-    <div class="span7 text-center">
-        <p><a class="btn btn-lg btn-primary" href="@routes.AdminController.adminAddFilm()" role="button">Add New Film</a>
-    </div>
-
     @for(f <- films){
         <div class="row">
             <div class="col-lg-12">
@@ -53,10 +42,16 @@
         </div>
     }
 
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header" style="padding-top: 10px;">Add New Film</h1>
+        </div>
+    </div>
+    <p><a class="btn btn-lg btn-primary" href="@routes.AdminController.adminAddFilm()" role="button">Add New Film</a>
+
     <script>
         function confirmDel() {
             return confirm('Are you sure?');
         }
     </script>
 }
-        <!--Created by Evan-->

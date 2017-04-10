@@ -6,9 +6,6 @@ import play.data.format.*;
 import play.data.validation.*;
 import org.mindrot.jbcrypt.BCrypt;
 
-/**
- * Created by evan.
- */
 @Entity
 public class User extends Model{
     @Id
