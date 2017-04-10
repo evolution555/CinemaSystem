@@ -1,0 +1,51 @@
+@(addStaffForm: Form[models.Staff], user: models.users.User, error: String)
+@import helper._
+
+@adminPages.adminMain("Staff", user) {
+    <div class="m-header scene_element scene_element--fadeinright" xmlns="http://www.w3.org/1999/html">
+        @if(error != null) {
+            <div class="alert alert-warning">
+                <strong>@error</strong>
+            </div>
+        }
+
+
+        <div class="col-xs-12">
+            <div class="addStaffContent">
+                <h2></h2>
+                    <!-- Use the views.html.helpers package to create the form -->
+                @form(action = routes.AdminController.addStaffSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
+
+                    <!-- Build the form, adding an input for each field -->
+                    <!-- Note the label parameter -->
+                @inputText(addStaffForm("name"), '_label -> "Name", 'class -> "form-control")
+                @inputText(addStaffForm("jobRole"), '_label -> "Job Role", 'class -> "form-control")
+                @inputText(addStaffForm("description"), '_label -> "About Yourself", 'class -> "form-control")
+                @inputText(addStaffForm("email"), '_label -> "Email", 'class -> "form-control")
+                @inputText(addStaffForm("number"), '_label -> "Number", 'class -> "form-control")
+                <label>Profile Picture Upload</label>
+                <input class="btn-sm btn-default" id="margBottom" type="file" name="upload">
+
+                @inputText(addStaffForm("id"), '_label -> "", 'hidden -> "hidden")
+                    <!-- Add a submit button -->
+
+                <div class="actions">
+                    <input type="submit" value="Add Staff" class="btn btn-primary">
+                    <a href="@routes.AdminController.adminStaff()"><button class="btn btn-warning">Cancel</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- End Form definition -->
+
+    } <!-- End of page content -->
+
+    @if(flash.containsKey("success")) {
+        <div class="alert alert-success">
+        @flash.get("success")
+        </div>
+    }
+
+}
+
+
