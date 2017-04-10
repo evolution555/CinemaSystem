@@ -10,7 +10,8 @@ GET         /adminBanners                     controllers.AdminController.adminB
 GET         /adminAddCarousel                 controllers.AdminController.adminAddCarousel
 GET         /adminDeleteBanners/:title        controllers.AdminController.deleteBanners(title: String)
 GET         /adminAddFilm                     controllers.AdminController.adminAddFilm
-GET         /booking/:title/:id/:time         controllers.HomeController.booking(title : String, id: String, time: String)
+GET         /booking/:title/:id/:time      controllers.HomeController.booking(title : String, id: String, time: String)
+GET         /payment                       controllers.PaymentController.payment
 GET         /adminShowing/:title              controllers.AdminController.adminShowing(title: String)
 GET         /adminAddShowing/:title           controllers.AdminController.adminAddShowing(title: String)
 GET         /updateShowing/:title             controllers.AdminController.updateShowing(title: String)
@@ -24,12 +25,9 @@ GET         /delMovie/:title                  controllers.AdminController.delete
 GET         /messages                         controllers.HomeController.messages
 GET         /adminMessages                    controllers.AdminController.adminMessages
 GET         /deleteMessages/:id                controllers.AdminController.deleteMessages(id : String)
-GET         /aboutus                          controllers.HomeController.aboutus
-GET         /adminStaff                       controllers.AdminController.adminStaff
-GET         /adminAddStaff                    controllers.AdminController.adminAddStaff
-GET         /delStaff/:id                     controllers.AdminController.adminDeleteStaff(id: Long)
-GET         /adminUpdateStaff/:id             controllers.AdminController.adminUpdateStaff(id:Long)
-POST        /addStaffSubmit                   controllers.AdminController.addStaffSubmit
+
+POST        /paymentSubmit                 controllers.PaymentController.paymentSubmit
+POST        /bookingSubmit                 controllers.HomeController.bookingSubmit
 POST        /messageSubmit                    controllers.HomeController.messageSubmit
 POST        /addCarouselSubmit                controllers.AdminController.addCarouselSubmit
 POST        /adminShowingSubmit               controllers.AdminController.adminShowingSubmit

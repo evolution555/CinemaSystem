@@ -3,6 +3,18 @@
 
 # --- !Ups
 
+create table booking (
+  booking_id                    integer not null,
+  title                         varchar(255),
+  time                          varchar(255),
+  date                          varchar(255),
+  qty                           integer,
+  total                         double,
+  cost                          double,
+  constraint pk_booking primary key (booking_id)
+);
+create sequence booking_seq;
+
 create table film (
   title                         varchar(255) not null,
   director                      varchar(255),
@@ -20,6 +32,15 @@ create table messages (
   constraint pk_messages primary key (id)
 );
 
+create table payments (
+  card_number                   varchar(255) not null,
+  name                          varchar(255),
+  exp_month                     varchar(255),
+  exp_year                      integer,
+  cvv2                          integer,
+  constraint pk_payments primary key (card_number)
+);
+
 create table showing (
   showing_id                    varchar(255) not null,
   title                         varchar(255),
@@ -35,17 +56,6 @@ create table showing_time (
   constraint pk_showing_time primary key (id)
 );
 create sequence showing_time_seq increment by 1;
-
-create table staff (
-  id                            bigint not null,
-  name                          varchar(255),
-  job_role                      varchar(255),
-  description                   varchar(255),
-  email                         varchar(255),
-  number                        varchar(255),
-  constraint pk_staff primary key (id)
-);
-create sequence staff_seq;
 
 create table user (
   email                         varchar(255) not null,
@@ -70,17 +80,19 @@ create index ix_showing_time_showingid on showing_time (showingid);
 alter table showing_time drop constraint if exists fk_showing_time_showingid;
 drop index if exists ix_showing_time_showingid;
 
+drop table if exists booking;
+drop sequence if exists booking_seq;
+
 drop table if exists film;
 
 drop table if exists messages;
+
+drop table if exists payments;
 
 drop table if exists showing;
 
 drop table if exists showing_time;
 drop sequence if exists showing_time_seq;
-
-drop table if exists staff;
-drop sequence if exists staff_seq;
 
 drop table if exists user;
 

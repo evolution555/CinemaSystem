@@ -1,6 +1,7 @@
 package controllers;
 
 import controllers.*;
+import controllers.routes;
 import play.api.Environment;
 import play.mvc.*;
 
@@ -40,15 +41,6 @@ public class HomeController extends Controller {
     }
 
 
-    public Result search() {
-        DynamicForm searchForm = formFactory.form().bindFromRequest();
-        String filmTitle = searchForm.get("title");
-        User u = getUserFromSession();
-        List<Film> searchFilms = Film.search(filmTitle);
-        List<carousel> allCarousel = carousel.findAll();
-        return ok(index.render(u, searchFilms, env, allCarousel));
-    }
-
     public Result film() {
         User u = getUserFromSession();
         Film f = null;
@@ -77,10 +69,6 @@ public class HomeController extends Controller {
         String time = null;
         Booking bk = null;
         String error = null;
-        /*
-        if (newBookingForm.hasErrors()) {
-            return badRequest(booking.render(bk, newBookingForm, getUserFromSession(), f, env, s, time, "Error in form."));
-        }*/
         //Adding Booking to database
         int qty = Integer.parseInt(newBookingForm.get("qty"));
         if (qty == 0) {
@@ -100,7 +88,6 @@ public class HomeController extends Controller {
         return ok(payment.render(b, newPaymentForm, getUserFromSession(), env, error)); // change to payments
     }
 
-
     public Result signUp() {
         Form<User> adduserForm = formFactory.form(User.class);
         return ok(signUp.render(adduserForm, null));
@@ -110,29 +97,6 @@ public class HomeController extends Controller {
         Form<Login> loginForm = formFactory.form(Login.class);
         return ok(login.render(loginForm));
     }
-
-    public Result messages() {
-        Form<Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
-        return ok(messages.render(newMessageForm, null));
-    }
-
-    public Result messageSubmit() {
-
-        Form<Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
-        Form errorForm = formFactory.form().bindFromRequest();
-
-        if (newMessageForm.hasErrors()) {
-            return badRequest(messages.render(errorForm, "Error with form."));
-        }
-        Messages m = newMessageForm.get();
-        m.save();
-        flash("success");
-        User u = getUserFromSession();
-        List<Film> allFilms = Film.findAll();
-        List<carousel> allCarousel = carousel.findAll();
-        return ok(index.render(u, allFilms, env, allCarousel));
-    }
-
 
     public Result addUserSubmit() {
         DynamicForm newUserForm = formFactory.form().bindFromRequest();
@@ -167,10 +131,34 @@ public class HomeController extends Controller {
         return User.getUserById(session().get("email"));
     }
 
-    public Result aboutus() {
+    public Result messages() {
+        Form<Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
+        return ok(messages.render(newMessageForm, null));
+    }
+
+    public Result messageSubmit() {
+
+        Form<Messages> newMessageForm = formFactory.form(Messages.class).bindFromRequest();
+        Form errorForm = formFactory.form().bindFromRequest();
+
+        if (newMessageForm.hasErrors()) {
+            return badRequest(messages.render(errorForm, "Error with form."));
+        }
+        Messages m = newMessageForm.get();
+        m.save();
+        flash("success");
         User u = getUserFromSession();
-        List<Staff> staffList = Staff.findAll();
-        return ok(aboutus.render(u, staffList, env));
+        List<Film> allFilms = Film.findAll();
+        List<carousel> allCarousel = carousel.findAll();
+        return ok(index.render(u, allFilms, env, allCarousel));
+    }
+
+    public Result search() {
+        DynamicForm searchForm = formFactory.form().bindFromRequest();
+        String filmTitle = searchForm.get("title");
+        User u = getUserFromSession();
+        List<Film> searchFilms = Film.search(filmTitle);
+        List<carousel> allCarousel = carousel.findAll();
+        return ok(index.render(u, searchFilms, env, allCarousel));
     }
 }
-
