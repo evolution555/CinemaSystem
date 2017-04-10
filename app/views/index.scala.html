@@ -1,15 +1,25 @@
 @(user: models.users.User, films: List[models.Film], env: play.api.Environment, carousel: List[models.carousel])
-@main("Index", user) {
-    <!--</div>  Use this closing div to make the carousel the full with of the page-->
+@main("Home", user) {
+    </div>
     <div class="row">
         <div class="col-lg-12">
                 <!-- Carousel
     ================================================== -->
             @if(flash().containsKey("success")) {
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="alert alert-success">
+                    <div class="col-xs-12">
+                        <div class="alert alert-success" style="text-align: center">
                             <strong>@flash().get("success")</strong>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            @if(flash().containsKey("error")) {
+                <div class="row">
+                    <div class="col-xs-12" style="text-align: center">
+                        <div class="alert alert-danger">
+                            <strong>@flash().get("error")</strong>
                         </div>
                     </div>
                 </div>
@@ -42,41 +52,42 @@
                                 </div>
                             </div>
                         }
-                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div><!-- /.carousel -->
-            </div>
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div><!-- /.carousel -->
+                </div>
             </div>
 
-                <section id="Films">
-                    <div class="container">
-                        <h1 class="page-header">Films</h1><!--Want to anchor this to the films button at top-->
-                        <!-- 4 posters to a row each poster for a particular movie on click go to movies own page pulled from db-->
-                        <div class="m-page scene_element scene_element--fadeinup">
-                            <div class="row">
-                                <div class="col-xs-12" id="posterSize">
-                                @for(f <- films) {
-                                    @if(env.resource("public/images/FilmPosters/" + f.getTitle + ".jpg").isDefined) {
-                                        <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/@(f.getTitle + ".jpg")" /></a>
-                                    } else {
-                                        <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/noImage.jpg" /></a>
+            <section id="Films">
+                <div class="container">
+                    <h1 class="page-header">Films</h1><!--Want to anchor this to the films button at top-->
+                    <!-- 4 posters to a row each poster for a particular movie on click go to movies own page pulled from db-->
+                    <div class="m-page scene_element scene_element--fadeinup">
+                        <div class="row">
+                            <div class="col-xs-12" id="posterSize">
+                            @for(f <- films) {
+                                @if(env.resource("public/images/FilmPosters/" + f.getTitle + ".jpg").isDefined) {
+                                    <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/@(f.getTitle + ".jpg")" /></a>
+                                } else {
+                                    <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/noImage.jpg" /></a>
 
-                                    }
                                 }
-                                </div>
+                            }
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
         </div>
 
     </div>
 
 
 }
+    <!--Created by Evan-->

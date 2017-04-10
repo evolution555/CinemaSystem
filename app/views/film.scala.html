@@ -46,7 +46,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h3 class="page-header" style="padding-top: 10px;">@s.getDate</h3>
-                            @for(t <- s.getTimes){
+                            @for(t <- s.getTimes) {
                                 <a class="btn btn-primary" href="@routes.HomeController.booking(s.getTitle, s.getShowingId, t.getTime)" role="button">@t.getTime</a>
                             }
                         </div>
@@ -58,3 +58,4 @@
     }
 </div>
 }
+    <!--Created by Evan-->

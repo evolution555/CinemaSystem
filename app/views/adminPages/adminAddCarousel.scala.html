@@ -1,25 +1,34 @@
-@(addCarouselForm: Form[models.carousel], user: models.users.User, error: String)
+@(newPaymentForm: Form[models.carousel], user: models.users.User, error: String)
 @import helper._
+@adminPages.adminMain("Add Carousel", user) {
+  <div class="m-header scene_element scene_element--fadein">
+    <div class="row">
+      <h1 class="page-header" style="text-align: center">Add a new slide to the main carousel</h1>
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="panel panel-default credit-card-box">
+          <div class="panel-body">
+            @if(error != null) {
+              <div class="alert alert-warning">
+                <strong>@error</strong>
+              </div>
+            }
 
-@adminPages.adminMain("Add Film", user){
-  <div class="m-header scene_element scene_element--fadeinright">
-    @if(error != null){
-      <div class="alert alert-warning">
-        <strong>@error</strong>
-      </div>
-    }
-
-      @helper.form(action = controllers.routes.AdminController.addCarouselSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
-      @inputText(addCarouselForm("title"), '_label -> "Title", 'class -> "form-control")
-      @inputText(addCarouselForm("description"), '_label -> "Description", 'class -> "form-control")
-      <label>Banner Upload</label>
-      <input class="btn-sm btn-default" id="margBottom" type="file" name="upload">
+            @helper.form(action = controllers.routes.AdminController.addCarouselSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
+              @inputText(newPaymentForm("title"), '_label -> "Title:", 'class -> "form-control")
+              @inputText(newPaymentForm("description"), '_label -> "Description:", 'class -> "form-control")
+              <label>Banner Upload:</label>
+              <input class="btn-sm btn-default" id="margBottom" type="file" name="upload">
 
 
-      <div class="actions" id="margBottom">
-        <input type="submit" value="Add Slide" class="btn btn-primary">
-        <a href="@routes.AdminController.adminFilm()" <button class="btn btn-warning">Cancel</button></a>
+              <div class="span7 text-center">
+                <input type="submit" value="Add Slide" class="btn btn-lg btn-primary">
+                <a href="@routes.AdminController.adminFilm()" <button class="btn btn-lg btn-warning">Cancel</button></a>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
-  }
+  </div>
 }
+}
+  <!--Created by Evan-->

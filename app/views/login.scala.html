@@ -1,7 +1,7 @@
 @(loginForm: Form[models.users.Login])
 @import helper._
 @main("Login", null) {
-  @if(flash().containsKey("error")){
+  @if(flash().containsKey("error")) {
     <div class="row">
       <div class="col-xs-4">
         <div class="alert alert-danger">
@@ -11,24 +11,32 @@
     </div>
 
   }
-  <div class="m-page scene_element scene_element--fadeinright">
+  <div class="m-page scene_element scene_element--fadein" style="padding-bottom: 138px;">
+    <h1 class="page-header" style="text-align: center">Sign In</h1>
     <div class="row">
-      <div class="col-xs-4">
-        <div class="centered">
-        @helper.form(action = controllers.routes.LoginController.loginSubmit()){
-          <div class="form-group">
-          @inputText(loginForm("email"), '_label -> "", 'class -> "form-control input-xs", 'placeholder -> "Email")
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="panel panel-default credit-card-box"style=" padding-bottom: 50px; padding-top: 50px;">
+          <div class="panel-body" >
+            <div class="centered">
+            @helper.form(action = controllers.routes.LoginController.loginSubmit()) {
+              <div class="form-group">
+              @inputText(loginForm("email"), '_label -> "Email:", 'class -> "form-control input-xs", 'placeholder -> "XXXXX@email.com")
+              </div>
+              <br>
+              <br>
+              <div class="form-group">
+              @inputPassword(loginForm("password"), '_label -> "Password:", 'class -> "form-control input-xs", 'placeholder -> "Password")
+              </div>
+              <div class="span7 text-center">
+                <input type="submit" value="Sign In" class="btn btn-lg btn-primary">
+              </div>
+            }
+            </div>
           </div>
-          <div class="form-group">
-          @inputPassword(loginForm("password"), '_label -> "", 'class -> "form-control input-xs", 'placeholder -> "Password")
-          </div>
-          <div class="form-group">
-            <input type="submit" value="Sign In" class="btn btn-primary">
-          </div>
-        }
         </div>
       </div>
     </div>
   </div>
 
 }
+  <!--Created by Evan-->

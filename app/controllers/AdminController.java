@@ -151,22 +151,20 @@ public class AdminController extends Controller {
         return redirect(routes.AdminController.adminFilm());
     }
 
-    //need to fill html form with showing details.
+    //need to fill html form with showing details. As hits null pointer
     @Transactional
-    public Result updateShowing(String title) {
+    public Result updateShowing(String id) {
         User u = HomeController.getUserFromSession();
-        Film f;
-        Form<Film> filmForm;
+        Form<Showing> newShowingForm;
         try {
-            f = Film.find.byId(title);
-            filmForm = formFactory.form(Film.class).fill(f);
+            Showing s = Showing.find.ref(id);
+            newShowingForm = formFactory.form(Showing.class).fill(s);
         } catch (Exception ex) {
             return badRequest("error");
         }
         return ok(adminAddShowing.render(HomeController.getUserFromSession(), null));
     }
 
-    //Needs on delete cascade
     public Result deleteShowing(String id) {
         Showing.find.ref(id).delete();
         flash("success", "Showing has been deleted.");

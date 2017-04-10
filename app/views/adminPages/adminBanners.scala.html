@@ -10,18 +10,22 @@
         </div>
 
     }
-    <h1 class="page-header" style="padding-top: 10px;">Banners</h1>
-    <!--Start of Banners.........................................................................-->
+    <div class="span7 text-center">
+        <h1 class="page-header" style="padding-top: 10px;">Add New Banner</h1>
+        <a class="btn btn-lg btn-primary" href="@routes.AdminController.adminAddCarousel()" role="button">Add Banner</a>
+    </div>
+        <!--Start of Banners.........................................................................-->
     @for(c <- carousels){
         <div class="row">
             <div class="col-lg-12">
                 <div class="m-header scene_element scene_element--fadein">
+                    <h1 class="page-header" style="padding-top: 10px;"></h1>
                     <div class="col-lg-5 col-sm-12" id="posterSize">
-                        @if(env.resource("public/images/Banners/" + c.getTitle+ ".jpg").isDefined){
-                            <img style="height: 250px;width: 400px;" src="/assets/images/Banners/@(c.getTitle + ".jpg")" />
-                        }else{
-                            <img src="/assets/images/FilmPosters/noImage.jpg" />
-                        }
+                    @if(env.resource("public/images/Banners/" + c.getTitle+ ".jpg").isDefined){
+                        <img style="height: 250px;width: 400px;" src="/assets/images/Banners/@(c.getTitle + ".jpg")" />
+                    }else{
+                        <img src="/assets/images/FilmPosters/noImage.jpg" />
+                    }
                     </div>
                 </div>
                 <div class="m-header scene_element scene_element--fadeinright">
@@ -34,12 +38,11 @@
             </div>
         </div>
     }
-    <!--End of Banners..............................................................................-->
-    <h1 class="page-header" style="padding-top: 10px;">Add New Slide</h1>
-    <a class="btn btn-lg btn-primary" href="@routes.AdminController.adminAddCarousel()" role="button">Add Slide</a>
+        <!--End of Banners..............................................................................-->
     <script>
-        function confirmDel() {
-            return confirm('Are you sure?');
-        }
+            function confirmDel() {
+                return confirm('Are you sure?');
+            }
     </script>
 }
+    <!--Created by Evan-->
