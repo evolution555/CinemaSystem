@@ -150,7 +150,9 @@ public class HomeController extends Controller {
         User u = getUserFromSession();
         List<Film> allFilms = Film.findAll();
         List<carousel> allCarousel = carousel.findAll();
+        flash("success", "Message Sent");
         return ok(index.render(u, allFilms, env, allCarousel));
+
     }
 
     public Result search() {
@@ -163,7 +165,6 @@ public class HomeController extends Controller {
     }
     public Result aboutus() {
         User u = getUserFromSession();
-        // Get list of all categories in ascending order
         List<Staff> staffList = Staff.findAll();
         return ok(aboutus.render(u,staffList, env));
     }

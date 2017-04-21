@@ -11,10 +11,14 @@ import com.avaje.ebean.*;
 public class Film extends Model{
     @OneToMany(mappedBy = "titleId")
     @Id //Primary Key
+    @Constraints.Required
     private String title;
+    @Constraints.Required
     private String director;
     private String trailerURL;
+    @Constraints.Required
     private int duration;
+    @Constraints.Required
     private String summery;
 
     public static Finder<String, Film> find = new Finder<String, Film>(Film.class);

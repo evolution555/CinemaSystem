@@ -2,6 +2,14 @@
 @import helper._
 
 @main("Messages", null) {
+    @if(flash().containsKey("success")) {
+        <div class="successMsg">
+            <div class="alert alert-success">
+                <strong>@flash().get("success")</strong>
+            </div>
+        </div>
+    }
+    <div class="MsgContent">
     <div class="m-page scene_element scene_element--fadeinright">
         <div class="row">
             <div class="col-lg-5">
@@ -21,6 +29,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     }
 }

@@ -12,11 +12,16 @@ import com.avaje.ebean.*;
  */
 @Entity
 public class Payments extends Model{
+    @Constraints.Required
     private String name;
     @Id
+    @Constraints.Required
     private String cardNumber;
+    @Constraints.Required
     private String expMonth;
+    @Constraints.Required
     private int expYear;
+    @Constraints.Required
     private int cvv2;
 
     public Payments(String name, String cardNumber, String expMonth, int expYear, int cvv2) {

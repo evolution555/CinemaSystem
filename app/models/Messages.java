@@ -16,8 +16,11 @@ public class Messages extends Model {
 
     @Id
     private String id;
+    @Constraints.Required
     private String name;
+    @Constraints.Required
     private String email;
+    @Constraints.Required
     private String message;
 
     public Messages() {
