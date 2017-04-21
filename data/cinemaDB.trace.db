@@ -1354,3 +1354,6 @@ Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the ap
 2017-04-07 11:14:54 jdbc[170]: exception
 org.h2.jdbc.JdbcSQLException: Value too long for column "MESSAGE VARCHAR(255)": "'Review site. A review site is a website on which reviews can be posted about people, businesses, products, or services. These s... (283)"; SQL statement:
 insert into messages (id, name, email, message) values (?,?,?,?) [22001-192]
+2017-04-20 23:21:08 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
+select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-192]
