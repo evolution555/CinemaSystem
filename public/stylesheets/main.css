@@ -30,9 +30,6 @@ body {
 
 .navbar-default .navbar-nav > li > a:hover {
     color: #6EC2F6;
-    -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
-    -moz-animation: neon2 1.5s ease-in-out infinite alternate;
-    animation: neon2 1.5s ease-in-out infinite alternate;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -325,6 +322,10 @@ h1 {
 .aboutParagraph {
     padding-left: 5%;
     padding-right: 5%;
+}
+.btn-primary .badge {
+    color: #6EC2F6;
+    background-color: #fff;
 }
 
 /********** About Popup2 container ***********/

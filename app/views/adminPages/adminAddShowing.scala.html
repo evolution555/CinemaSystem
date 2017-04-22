@@ -12,20 +12,20 @@
             <form method="post" action="@routes.AdminController.adminShowingSubmit()" class="form-horizontal">
               <div class="col-xs-12">
                 <label>Screen:</label>
-                <input type="number" id="screen" name="screen" class="form-control" min="1" max="10"/>
+                <input type="number" id="screen" name="screen" class="form-control" min="1" max="10" required/>
               </div>
               <div class="col-xs-6">
 
                 <label class="control-label" for="date">Date:</label>
                 <div class="input-group">
-                  <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/> <span class="input-group-addon">
+                  <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text" required/> <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
               </div>
               <div class="col-xs-6">
                 <label class="control-label" for="time">Time:</label>
                 <div class="input-group">
-                  <input type="time" id="time" name="time" placeholder="HH:MM" class="form-control"/>
+                  <input type="time" id="time" name="time" placeholder="HH:MM" class="form-control" step="1800" required/>
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-time"></span>
                   </span>
