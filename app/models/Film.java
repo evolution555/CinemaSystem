@@ -15,6 +15,7 @@ public class Film extends Model{
     private String title;
     @Constraints.Required
     private String director;
+    @Constraints.Required
     private String trailerURL;
     @Constraints.Required
     private int duration;
