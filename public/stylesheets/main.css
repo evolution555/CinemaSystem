@@ -326,6 +326,10 @@ h1 {
     padding-left: 5%;
     padding-right: 5%;
 }
+.btn-primary .badge {
+    color: #6EC2F6;
+    background-color: #fff;
+}
 
 /********** About Popup2 container ***********/
 .popup {
