@@ -16,13 +16,15 @@ create table booking (
 create sequence booking_seq;
 
 create table film (
-  title                         varchar(255) not null,
+  film_id                       varchar(255) not null,
+  title                         varchar(255),
   director                      varchar(255),
   trailer_url                   varchar(255),
   duration                      integer,
   summery                       varchar(255),
-  constraint pk_film primary key (title)
+  constraint pk_film primary key (film_id)
 );
+create sequence film_seq increment by 1;
 
 create table messages (
   id                            varchar(255) not null,
@@ -95,6 +97,7 @@ drop table if exists booking;
 drop sequence if exists booking_seq;
 
 drop table if exists film;
+drop sequence if exists film_seq;
 
 drop table if exists messages;
 

@@ -8,9 +8,14 @@ import play.data.validation.*;
 import com.avaje.ebean.*;
 
 @Entity
+@SequenceGenerator(name = "film_gen", allocationSize=1, initialValue=1)
 public class Film extends Model{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "film_gen")
     @OneToMany(mappedBy = "titleId")
-    @Id //Primary Key
+    private String filmId;
+
     @Constraints.Required
     private String title;
     @Constraints.Required
@@ -73,5 +78,9 @@ public class Film extends Model{
 
     public void setSummery(String summery) {
         this.summery = summery;
+    }
+
+    public String getFilmId() {
+        return filmId;
     }
 }

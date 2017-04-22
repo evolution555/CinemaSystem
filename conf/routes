@@ -37,6 +37,7 @@ POST        /bookingSubmit                 controllers.HomeController.bookingSub
 POST        /messageSubmit                    controllers.HomeController.messageSubmit
 POST        /addCarouselSubmit                controllers.AdminController.addCarouselSubmit
 POST        /adminShowingSubmit               controllers.AdminController.adminShowingSubmit
+POST        /updateMovieSubmit                controllers.AdminController.updateMovieSubmit
 POST        /addUserSubmit                    controllers.HomeController.addUserSubmit
 POST        /loginSubmit                      controllers.LoginController.loginSubmit
 POST        /addFilmSubmit                    controllers.AdminController.addFilmSubmit

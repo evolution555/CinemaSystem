@@ -1,0 +1,53 @@
+@(film: models.Film, user: models.users.User, error: String)
+
+@adminPages.adminMain("Update Film", user) {
+    <div class="m-header scene_element scene_element--fadein">
+        <div class="row">
+            <h1 class="page-header" style="text-align: center">Update Film: @film.getTitle</h1>
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="panel panel-default credit-card-box">
+                    <div class="panel-body">
+                        @if(error != null) {
+                            <div class="alert alert-warning">
+                                <strong>@error</strong>
+                            </div>
+                        }
+                        <form method="post" action="@routes.AdminController.updateMovieSubmit()" class="form-horizontal" enctype="multipart/form-data">
+
+                            <input type="hidden" name="id" value="@film.getFilmId" />
+
+                            <label class="control-label">Title:</label>
+                            <input type="text" name="title" value="@film.getTitle" class="form-control"/>
+
+                            <label class="control-label">Director</label>
+                            <input type="text" name="director" value="@film.getDirector" class="form-control" />
+
+                            <label class="control-label">Trailer (Embedded URL Link):</label>
+                            <input type="text" name="trailerURL" value="@film.getTrailerURL" class="form-control" />
+
+                            <label class="control-label">Duration:</label>
+                            <div class="input-group">
+                                <input type="number" value="@film.getDuration"  name="duration" placeholder="Mins" class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+
+                            <label class="control-label">Description</label>
+                            <input type="text" value="@film.getSummery" name="summery" class="form-control" />
+
+                            <div class="span7 text-center">
+                                <input type="submit" value="Update Film" class="btn btn-lg btn-primary" />
+                            </div>
+                        </form>
+                        <div class="span7 text-center">
+                            <a href="@routes.AdminController.adminFilm()"><button class="btn btn-lg btn-warning">
+                                Cancel</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--Created by Evan-->
+}

@@ -9,6 +9,7 @@ import models.users.*;
 import models.*;
 
 import javax.inject.Inject;
+import java.nio.file.Files;
 import java.util.*;
 
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -36,24 +37,30 @@ public class AdminController extends Controller {
 
 
     public Result adminAddFilm() {
-        Form<Film> addFilmForm = formFactory.form(Film.class);
+        Film f = new Film();
         User u = HomeController.getUserFromSession();
-        return ok(adminAddFilm.render(addFilmForm, u, null));
+        return ok(adminAddFilm.render(f, u, null));
     }
 
     public Result addFilmSubmit() {
-        Form<Film> newFilmForm = formFactory.form(Film.class).bindFromRequest();
-        String saveImageMsg;
-        if (newFilmForm.hasErrors()) {
-            return badRequest(adminAddFilm.render(newFilmForm, HomeController.getUserFromSession(), "Error with Form"));
+        DynamicForm df = formFactory.form().bindFromRequest();
+        Film f = new Film();
+        f.setTitle(df.get("title"));
+        f.setDirector(df.get("director"));
+        f.setTrailerURL(df.get("trailerURL"));
+        f.setSummery(df.get("summery"));
+        try {
+            f.setDuration(Integer.parseInt(df.get("duration")));
+        }catch(NumberFormatException e){
+            return badRequest(adminAddFilm.render(f, HomeController.getUserFromSession(), "Duration must be a number"));
         }
 
+        String saveImageMsg;
+
         List<Film> allFilms = Film.findAll();
-        Film f = newFilmForm.get();
         for (Film film : allFilms) {
             if (film.getTitle().equals(f.getTitle())) {
-                f.update();
-                routes.AdminController.adminFilm();
+                return badRequest(adminAddFilm.render(f, HomeController.getUserFromSession(), "Movie already in database."));
             }
         }
         f.save();
@@ -61,26 +68,53 @@ public class AdminController extends Controller {
         Http.MultipartFormData data = request().body().asMultipartFormData();
         FilePart image = data.getFile("upload");
 
-        flash("success", saveFile(f.getTitle(), image));
+        flash("success", saveFile(f.getFilmId(), image));
         return redirect(routes.AdminController.adminFilm());
     }
 
-    @Transactional
-    public Result updateMovie(String title) {
-        Film f;
-        Form<Film> filmForm;
-        try {
-            f = Film.find.byId(title);
-            filmForm = formFactory.form(Film.class).fill(f);
-        } catch (Exception ex) {
-            return badRequest("error");
-        }
-        return ok(adminAddFilm.render(filmForm, HomeController.getUserFromSession(), null));
+    public Result updateMovie(String movie){
+        Film f = Film.find.byId(movie);
+        return ok(adminUpdateFilm.render(f, HomeController.getUserFromSession(), null));
     }
 
+    public Result updateMovieSubmit(){
+        DynamicForm df = formFactory.form().bindFromRequest();
+        String title = df.get("title");
+        String director = df.get("director");
+        String trailer = df.get("trailerURL");
+        String id = df.get("id");
+
+        Film f = Film.find.byId(id);
+        int duration = 0;
+        try{
+            duration = Integer.parseInt(df.get("duration"));
+        }catch (NumberFormatException e){
+            return badRequest(adminUpdateFilm.render(f, HomeController.getUserFromSession(), "Duration must be a number"));
+        }
+        if(title.equals("")){
+            return badRequest(adminUpdateFilm.render(f, HomeController.getUserFromSession(), "Title cannot be blank."));
+        }
+
+        f.setTitle(title);
+        f.setDirector(director);
+        f.setTrailerURL(trailer);
+        f.setDuration(duration);
+        f.update();
+
+
+        flash("success", "Movie Updated");
+        return redirect(routes.AdminController.adminFilm());
+    }
+
+
     public Result deleteMovie(String title) {
+        Film f = Film.find.byId(title);
         Film.find.ref(title).delete();
         flash("success", "Movie has been deleted.");
+
+        //Deleting image from folder.
+        File file = new File("public/images/FilmPosters/" + f.getFilmId() + ".jpg");
+        file.delete();
         return redirect(routes.AdminController.adminFilm());
     }
 
@@ -100,7 +134,7 @@ public class AdminController extends Controller {
                 File file = uploaded.getFile();
                 file.renameTo(new File("public/images/FilmPosters/" + movieTitle + "." + extension));
             }
-            return "Movie Added / Updated";
+            return "Movie Added";
         }
         return "no file";
     }
@@ -109,8 +143,9 @@ public class AdminController extends Controller {
     public Result adminShowing(String title) {
         User u = HomeController.getUserFromSession();
         List<Showing> showingsList = Showing.findMovieShowings(title);
+        Film f = Film.find.byId(title);
         //List<Showing> showingsList = Showing.findAll();
-        return ok(adminShowing.render(u, showingsList, title));
+        return ok(adminShowing.render(u, showingsList, f));
     }
 
     //Add showings to particular film

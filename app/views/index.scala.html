@@ -72,10 +72,10 @@
                         <div class="row">
                             <div class="col-xs-12" id="posterSize">
                             @for(f <- films) {
-                                @if(env.resource("public/images/FilmPosters/" + f.getTitle + ".jpg").isDefined) {
-                                    <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/@(f.getTitle + ".jpg")" /></a>
+                                @if(env.resource("public/images/FilmPosters/" + f.getFilmId + ".jpg").isDefined) {
+                                    <a href="@routes.HomeController.viewMovie(f.getFilmId)"><img src="/assets/images/FilmPosters/@(f.getFilmId + ".jpg")" /></a>
                                 } else {
-                                    <a href="@routes.HomeController.viewMovie(f.getTitle)"><img src="/assets/images/FilmPosters/noImage.jpg" /></a>
+                                    <a href="@routes.HomeController.viewMovie(f.getFilmId)"><img src="/assets/images/FilmPosters/noImage.jpg" /></a>
 
                                 }
                             }

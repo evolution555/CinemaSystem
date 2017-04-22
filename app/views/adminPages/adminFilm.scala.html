@@ -30,8 +30,8 @@
         <div class="row">
             <div class="m-header scene_element scene_element--fadein">
                 <div class="col-lg-3 col-sm-12" id="posterSize">
-                @if(env.resource("public/images/FilmPosters/" + f.getTitle + ".jpg").isDefined){
-                    <img src="/assets/images/FilmPosters/@(f.getTitle + ".jpg")" />
+                @if(env.resource("public/images/FilmPosters/" + f.getFilmId + ".jpg").isDefined){
+                    <img src="/assets/images/FilmPosters/@(f.getFilmId + ".jpg")" />
                 }else{
                     <img src="/assets/images/FilmPosters/noImage.jpg" />
                 }
@@ -43,9 +43,9 @@
                     <p><b>Director:</b> @f.getDirector</p>
                     <p><b>Duration:</b> @f.getDuration (Mins)</p>
                     <p><b>Trailer URL:</b> <a href="@f.getTrailerURL">YouTube</a></p>
-                    <p><a class="btn btn-lg btn-danger" id="right-btn" href="@routes.AdminController.deleteMovie(f.getTitle)" role="button" onclick="return confirmDel();">Delete</a></p>
-                    <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.updateMovie(f.getTitle)" role="button">Update</a></p>
-                    <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminShowing(f.getTitle)" role="button">Showings</a></p>
+                    <p><a class="btn btn-lg btn-danger" id="right-btn" href="@routes.AdminController.deleteMovie(f.getFilmId)" role="button" onclick="return confirmDel();">Delete</a></p>
+                    <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.updateMovie(f.getFilmId)" role="button">Update</a></p>
+                    <p><a class="btn btn-lg btn-primary" id="right-btn" href="@routes.AdminController.adminShowing(f.getFilmId)" role="button">Showings</a></p>
                         <!--uses the films id to access the showing for that particular film-->
 
                 </div>

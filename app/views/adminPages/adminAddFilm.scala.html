@@ -1,5 +1,4 @@
-@(addFilmForm: Form[models.Film], user: models.users.User, error: String)
-@import helper._
+@(film: models.Film, user: models.users.User, error: String)
 
 @adminPages.adminMain("Add Film", user) {
   <div class="m-header scene_element scene_element--fadein">
@@ -13,19 +12,27 @@
                 <strong>@error</strong>
               </div>
             }
+            <form method="post" action="@routes.AdminController.addFilmSubmit()" class="form-horizontal" enctype="multipart/form-data">
+              <label class="control-label">Title:</label>
+              <input type="text" name="title" class="form-control"/>
 
-            @helper.form(action = controllers.routes.AdminController.addFilmSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
-              @inputText(addFilmForm("title"), '_label -> "Title:", 'class -> "form-control")
-              @inputText(addFilmForm("director"), '_label -> "Director:", 'class -> "form-control")
-              @inputText(addFilmForm("trailerURL"), '_label -> "Trailer (Embedded URL Link):", 'class -> "form-control")
+              <label class="control-label">Director</label>
+              <input type="text" name="director" class="form-control" />
+
+              <label class="control-label">Trailer (Embedded URL Link):</label>
+              <input type="text" name="trailerURL" class="form-control" />
+
               <label class="control-label">Duration:</label>
               <div class="input-group">
-                <input type="number" id="duration" name="duration" placeholder="Mins" class="form-control" min="0"/>
+                <input type="number"  name="duration" placeholder="Mins" class="form-control" min="0"/>
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-time"></span>
                 </span>
               </div>
-              @inputText(addFilmForm("summery"), '_label -> "Description:", 'class -> "form-control")
+
+              <label class="control-label">Description</label>
+              <input type="text" name="summery" class="form-control" />
+
               <label class="custom-file">Poster Upload:
                 <input class="custom-file-input" id="file" type="file" name="upload">
                 <span class="custom-file-control"></span>
@@ -33,14 +40,16 @@
 
               <div class="span7 text-center">
                 <input type="submit" value="Add Film" class="btn btn-lg btn-primary">
-                <a href="@routes.AdminController.adminFilm()" <button class="btn btn-lg btn-warning">
-                Cancel</button></a>
               </div>
+            </form>
+            <div class="span7 text-center">
+              <a href="@routes.AdminController.adminFilm()"><button class="btn btn-lg btn-warning">
+                Cancel</button></a>
+            </div>
             </div>
         </div>
       </div>
     </div>
   </div>
     <!--Created by Evan-->
-}
 }

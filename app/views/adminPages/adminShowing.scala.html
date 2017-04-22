@@ -1,4 +1,4 @@
-@(user: models.users.User, showings: List[models.Showing], title: String)
+@(user: models.users.User, showings: List[models.Showing], film: models.Film)
 @adminPages.adminMain("Admin Showing", user) {
     <div class="row">
         <div class="col-lg-12">
@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="span7 text-center">
-        <p><a class="btn btn-lg btn-primary" href="@routes.AdminController.adminAddShowing(title)" role="button">Add New Showing</a></p>
+        <p><a class="btn btn-lg btn-primary" href="@routes.AdminController.adminAddShowing(film.getFilmId)" role="button">Add New Showing</a></p>
     </div>
 
 
@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 style="text-align: center;
-                    text-decoration: underline;">@title Showings</h1>
+                    text-decoration: underline;">@film.getTitle Showings</h1>
             </div>
         </div>
             <!-- Showing Items -->
