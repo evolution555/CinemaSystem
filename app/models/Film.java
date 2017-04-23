@@ -13,7 +13,7 @@ public class Film extends Model{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "film_gen")
-    @OneToMany(mappedBy = "titleId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "titleId")
     private String filmId;
 
     @Constraints.Required

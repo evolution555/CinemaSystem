@@ -21,7 +21,7 @@ public class Showing extends Model{
     private int screen;
     private String date;
 
-    @OneToMany (mappedBy = "showing")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "showing")
     private List<ShowingTime> times = new ArrayList<>();
 
     public Showing(){
