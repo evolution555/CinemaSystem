@@ -14,19 +14,19 @@
                         }
                         <form method="post" action="@controllers.routes.HomeController.addUserSubmit()" class="form-horizontal">
                             <label>Email:</label>
-                            <input required type="email" class="form-control" placeholder="Enter your email">
+                            <input type="text" name="email" class="form-control" placeholder="Enter your email" required/>
 
                             <label>Name:</label>
-                            <input required type="text" name="name" class="form-control" placeholder="Enter your name" />
+                            <input type="text" name="name" class="form-control" placeholder="Enter your name" required/>
 
                             <label>Role:</label>
-                            <select required name="role" class="form-control">
+                            <select name="role" class="form-control" required>
                                 <option>Admin</option>
                                 <option>Customer</option>
                             </select>
 
                             <label>Password:</label>
-                            <input required type="password" name="password" class="form-control" />
+                            <input type="password" name="password" class="form-control" required/>
 
                             <label>Password Confirm:</label>
                             <input type="password" name="passwordConfirm" class="form-control" required/>
@@ -36,7 +36,7 @@
                                     Cancel</button></a>
                             </div>
                         </form>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
