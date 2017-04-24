@@ -37,21 +37,10 @@ public class PaymentController extends Controller {
 
     public Result paymentSubmit() {
         DynamicForm newPaymentForm = formFactory.form().bindFromRequest();
-        DynamicForm errorForm = formFactory.form().bindFromRequest();
-        User u = HomeController.getUserFromSession();
-        Booking b = null;
         String name = newPaymentForm.get("name");
         String cardNo = newPaymentForm.get("cardNumber");
-        if(newPaymentForm.get("expMonth") == "Month"){
-            flash("error", "Please select a valid expirey month..");
-            return redirect(routes.HomeController.index());
-        }
         String month = newPaymentForm.get("expMonth");
         int year = Integer.parseInt(newPaymentForm.get("expYear"));
-         if(newPaymentForm.get("expYear") == "Year"){
-             flash("error", "Please select a valid expirey year.");
-             return redirect(routes.HomeController.index());
-        }
         int cvv = Integer.parseInt(newPaymentForm.get("cvv2"));
 
         Payments pay = new Payments(name, cardNo, month, year, cvv);

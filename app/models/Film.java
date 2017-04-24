@@ -13,9 +13,9 @@ public class Film extends Model{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "film_gen")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "titleId")
     private String filmId;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "titleId")
     @Constraints.Required
     private String title;
     @Constraints.Required
