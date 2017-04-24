@@ -18,7 +18,7 @@
                                 @*Number of ticket selection*@
                                 <label for="qty">Quantity:</label>
                                 <select class="form-control" name="qty" required>
-                                    <option value="">Select</option>
+                                    <option value="0">Select</option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -28,18 +28,18 @@
                                     <option>7</option>
                                     <option>8</option>
                                     <option>9</option>
-                                    <option>1O</option>
                                 </select>
                                 <input type="hidden" name="title" id="title" value="@film.getFilmId">
                                 <input type="hidden" name="time" id="time" value="@time">
                                 <input type="hidden" name="date" id="date" value="@show.getDate">
                                 <input type="hidden" name="total" id="total" value="@book.getTotal">
-                                <div class="span7 text-center"style="padding-bottom: 30px;padding-top: 30px;">
+                                <div class="span7 text-center"style="padding-top: 30px;">
                                     <input type="submit" value="Book Now" class="btn btn-lg btn-primary">
-                                    <a href="@routes.HomeController.index()"></a> <button class="btn btn-lg btn-warning">
-                                    Cancel</button>
                                 </div>
                             }
+                            <div class="span7 text-center"style="padding-bottom: 30px;">
+                             <a href="@routes.HomeController.index()"><button class="btn btn-lg btn-warning" formnovalidate=>Cancel</button></a>
+                            </div>
 
                         </div>
                     </div>

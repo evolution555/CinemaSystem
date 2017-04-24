@@ -27,79 +27,82 @@
                 <div class="col-lg-5">
                     <div class="m-header scene_element scene_element--fadeinright">
                             <!-- CREDIT CARD FORM STARTS HERE -->
-                        <form method="post" action="@routes.PaymentController.paymentSubmit" class="form-horizontal">
-                            <div class="panel panel-default credit-card-box">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <h3 class="page-header" style="text-align: center;
-                                            margin-bottom: 20px;
-                                            margin-top: 0px;
-                                            padding-top: 0px">Payment Details</h3>
-                                        <img class="img-responsive center-block" style="margin-top: 20px;
-                                            margin-bottom: 20px" src="http://i76.imgup.net/accepted_c22e0.png">
+
+                        <div class="panel panel-default credit-card-box">
+                            <form class="panel-body">
+                                <div class="row">
+                                    <h3 class="page-header" style="text-align: center;
+                                        margin-bottom: 20px;
+                                        margin-top: 0px;
+                                        padding-top: 0px">Payment Details</h3>
+                                    <img class="img-responsive center-block" style="margin-top: 20px;
+                                        margin-bottom: 20px" src="http://i76.imgup.net/accepted_c22e0.png">
+                                    <form method="post" action="@routes.PaymentController.paymentSubmit" class="form-horizontal">
                                         <div class="col-xs-12">
                                             <label>Cardholder Name:</label>
-                                            <input type="text" name="name" class="form-control" placeholder="John Smith"required autofocus/>
+                                            <input type="text" name="name" class="form-control" placeholder="John Smith" required autofocus/>
                                             <br>
 
                                             <label>Card Number:</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" minlength="16" maxlength="16" required autofocus/>
+                                                <input type="text" class="form-control" name="cardNumber" value="" placeholder="Valid Card Number" minlength="16" maxlength="16" required autofocus/>
                                                 <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                             </div>
                                             <br>
                                         </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-6">
+                                        <label for="expMonth">Expiry:</label>
+                                        <select class="form-control" name="expMonth" required>
+                                            <option value="">Month</option>
+                                            <option>Jan</option>
+                                            <option>Feb</option>
+                                            <option>Mar</option>
+                                            <option>Apr</option>
+                                            <option>May</option>
+                                            <option>Jun</option>
+                                            <option>Jul</option>
+                                            <option>Aug</option>
+                                            <option>Sep</option>
+                                            <option>Oct</option>
+                                            <option>Nov</option>
+                                            <option>Dec</option>
+                                        </select>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xs-6 col-md-6">
-                                            <label for="expMonth">Expiry:</label>
-                                            <select class="form-control" name="expMonth" required>
-                                                <option value="">Month</option>
-                                                <option>Jan</option>
-                                                <option>Feb</option>
-                                                <option>Mar</option>
-                                                <option>Apr</option>
-                                                <option>May</option>
-                                                <option>Jun</option>
-                                                <option>Jul</option>
-                                                <option>Aug</option>
-                                                <option>Sep</option>
-                                                <option>Oct</option>
-                                                <option>Nov</option>
-                                                <option>Dec</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-xs-6 col-md-6">
-                                            <label></label>
-                                            <select class="form-control" name="expYear" required>
-                                                <option value="">Year</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                                <option>2020</option>
-                                                <option>2021</option>
-                                                <option>2022</option>
-                                                <option>2023</option>
-                                                <option>2024</option>
-                                                <option>2025</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6 col-lg-offset-3">
-                                            <label for="cvv2">CVV2:</label>
-                                            <input required type=password class="form-control" name="cvv2" minlength="3" maxlength="3" placeholder="CVV">
-                                            <br>
-                                        </div>
+                                    <div class="col-xs-6 col-md-6">
+                                        <label></label>
+                                        <select class="form-control" name="expYear" required>
+                                            <option value="">Year</option>
+                                            <option>2018</option>
+                                            <option>2019</option>
+                                            <option>2020</option>
+                                            <option>2021</option>
+                                            <option>2022</option>
+                                            <option>2023</option>
+                                            <option>2024</option>
+                                            <option>2025</option>
+                                        </select>
                                     </div>
-                                    <div class="span7 text-center" style="padding-top: 20px">
-                                        <input type="submit" value="Confirm Purchase" class="btn btn-lg btn-primary">
-                                        <a href="@routes.HomeController.index()"></a> <button class="btn btn-lg btn-warning">
-                                        Cancel</button>
+                                    <div class="col-lg-6 col-lg-offset-3">
+                                        <label for="cvv2">CVV2:</label>
+                                        <input required type=password class="form-control" name="cvv2" minlength="3" maxlength="3" placeholder="CVV">
+                                        <br>
                                     </div>
                                 </div>
+                                <div class="span7 text-center" style="padding-top: 20px">
+                                    <input type="submit" value="Confirm Purchase" class="btn btn-lg btn-primary">
+                                </div>
+                            </form>
+                            <div class="span7 text-center" style="padding-top: 20px">
+                            <a href="@routes.HomeController.index()"> <button class="btn btn-lg btn-warning" formnovalidate="formnovalidate">
+                                Cancel</button></a>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     } else {
         <h1> No Film Selected</h1>
