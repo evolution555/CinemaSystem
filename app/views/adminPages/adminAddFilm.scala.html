@@ -14,24 +14,24 @@
             }
             <form method="post" action="@routes.AdminController.addFilmSubmit()" class="form-horizontal" enctype="multipart/form-data">
               <label class="control-label">Title:</label>
-              <input type="text" name="title" class="form-control"/>
+              <input type="text" name="title" class="form-control" required/>
 
               <label class="control-label">Director</label>
-              <input type="text" name="director" class="form-control" />
+              <input type="text" name="director" class="form-control" required/>
 
               <label class="control-label">Trailer (Embedded URL Link):</label>
-              <input type="text" name="trailerURL" class="form-control" />
+              <input type="url" name="trailerURL" class="form-control" required/>
 
               <label class="control-label">Duration:</label>
               <div class="input-group">
-                <input type="number"  name="duration" placeholder="Mins" class="form-control" min="0"/>
+                <input type="number"  name="duration" placeholder="Mins" class="form-control" min="0" step="30" required/>
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-time"></span>
                 </span>
               </div>
 
               <label class="control-label">Description</label>
-              <input type="text" name="summery" class="form-control" />
+              <input type="text" name="summery" class="form-control" required/>
 
               <label class="custom-file">Poster Upload:
                 <input class="custom-file-input" id="file" type="file" name="upload">
