@@ -81,6 +81,7 @@ public class AdminController extends Controller {
         DynamicForm df = formFactory.form().bindFromRequest();
         String title = df.get("title");
         String director = df.get("director");
+        String summary = df.get("summery");
         String trailer = df.get("trailerURL");
         String id = df.get("id");
 
@@ -98,6 +99,7 @@ public class AdminController extends Controller {
         f.setTitle(title);
         f.setDirector(director);
         f.setTrailerURL(trailer);
+        f.setSummery(summary);
         f.setDuration(duration);
         f.update();
 
