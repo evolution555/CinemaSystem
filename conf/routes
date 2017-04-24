@@ -32,6 +32,7 @@ GET         /delStaff/:id                     controllers.AdminController.adminD
 GET         /adminUpdateStaff/:id             controllers.AdminController.adminUpdateStaff(id:Long)
 
 POST        /addStaffSubmit                   controllers.AdminController.addStaffSubmit
+POST        /updateStaffSubmit                controllers.AdminController.updateStaffSubmit
 POST        /paymentSubmit                 controllers.PaymentController.paymentSubmit
 POST        /bookingSubmit                 controllers.HomeController.bookingSubmit
 POST        /messageSubmit                    controllers.HomeController.messageSubmit

@@ -302,6 +302,26 @@ public class AdminController extends Controller {
 
     }
 
+    public Result updateStaffSubmit() {
+        User u = HomeController.getUserFromSession();
+        Form<Staff> updateStaffForm = formFactory.form(Staff.class).bindFromRequest();
+        if (updateStaffForm.hasErrors()) {
+            return badRequest(adminUpdateStaff.render(updateStaffForm, u, null));
+        }
+
+        Staff newStaff = updateStaffForm.get();
+
+        if (newStaff.getId() == null) {
+            newStaff.save();
+        } else if (newStaff.getId() != null) {
+            newStaff.update();
+        }
+
+        flash("success", "Updated Staff: " + newStaff.getName());
+        return redirect(routes.AdminController.adminStaff());
+
+    }
+
     public String saveStaffFile(Long id, FilePart<File> upload) {
         if (upload != null) {
             String fileName = upload.getFilename();
@@ -318,7 +338,7 @@ public class AdminController extends Controller {
                 File file = upload.getFile();
                 file.renameTo(new File("public/images/staffImages/" + id + "." + ext));
             }
-            return " Has Been Added | Updated";
+            return " Has Been Added";
         }
         return "No File";
     }
@@ -341,7 +361,7 @@ public class AdminController extends Controller {
         } catch (Exception ex) {
             return badRequest("error");
         }
-        return ok(adminAddStaff.render(staffForm, u, null));
+        return ok(adminUpdateStaff.render(staffForm, u, null));
     }
 
 
