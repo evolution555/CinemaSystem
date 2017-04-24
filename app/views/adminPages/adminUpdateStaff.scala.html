@@ -1,0 +1,48 @@
+@(updateStaffForm: Form[models.Staff], user: models.users.User, error: String)
+@import helper._
+
+@adminPages.adminMain("Update Staff", user) {
+    <div class="m-header scene_element scene_element--fadeinright" xmlns="http://www.w3.org/1999/html">
+        @if(error != null) {
+            <div class="alert alert-warning">
+                <strong>@error</strong>
+            </div>
+        }
+
+
+        <div class="col-xs-12">
+            <div class="addStaffContent">
+                <h2></h2>
+                    <!-- Use the views.html.helpers package to create the form -->
+                @form(action = routes.AdminController.updateStaffSubmit(), 'class -> "form-horizontal", 'role -> "form", 'enctype -> "multipart/form-data") {
+
+                    <!-- Build the form, adding an input for each field -->
+                    <!-- Note the label parameter -->
+                @inputText(updateStaffForm("name"), '_label -> "Name", 'class -> "form-control")
+                @inputText(updateStaffForm("jobRole"), '_label -> "Job Role", 'class -> "form-control")
+                @inputText(updateStaffForm("description"), '_label -> "About Yourself", 'class -> "form-control")
+                @inputText(updateStaffForm("email"), '_label -> "Email", 'class -> "form-control")
+                @inputText(updateStaffForm("number"), '_label -> "Number", 'class -> "form-control")
+                @inputText(updateStaffForm("id"), '_label -> "", 'hidden -> "hidden")
+                    <!-- Add a submit button -->
+
+                <div class="actions">
+                    <input type="submit" value="Update Staff" class="btn btn-primary">
+                    <a href="@routes.AdminController.adminStaff()"><button class="btn btn-warning">Cancel</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- End Form definition -->
+
+    } <!-- End of page content -->
+
+    @if(flash.containsKey("success")) {
+        <div class="alert alert-success">
+        @flash.get("success")
+        </div>
+    }
+
+}
+
+
