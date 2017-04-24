@@ -90,7 +90,9 @@ public class Showing extends Model{
     }
 
     public List<ShowingTime> getTimes() {
-        return times;
+        List <ShowingTime> st = times;
+        Collections.sort(st,new timeComparitor());
+        return st;
     }
 
     public void setTimes(List<ShowingTime> times) {

@@ -51,6 +51,7 @@ public class HomeController extends Controller {
     public Result viewMovie(String title) {
         Film f = Film.find.byId(title);
         List<Showing> showingsList = Showing.findMovieShowings(title);
+        Collections.sort(showingsList,new dateComparitor());
         return ok(film.render(getUserFromSession(), f, env, showingsList));
     }
 

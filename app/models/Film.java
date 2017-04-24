@@ -39,7 +39,6 @@ public class Film extends Model{
                 .findList();
     }
 
-
     public String getTitle() {
         return title;
     }

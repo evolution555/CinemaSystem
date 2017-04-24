@@ -1,0 +1,64 @@
+@(user: models.users.User, film: models.Film, showing: models.Showing, k: Integer)
+
+@adminPages.adminMain("Update Showing", user) {
+
+
+    <div class="m-header scene_element scene_element--fadein">
+        <div class="row">
+            <h1 class="page-header" style="text-align: center">Update a Showing</h1>
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="panel panel-default credit-card-box">
+                    <div class="panel-body">
+                        <form method="post" action="@routes.AdminController.updateShowingsSubmit()" class="form-horizontal">
+                            <div class="col-xs-12">
+                                <label>Screen:</label>
+                                <input type="number" id="screen" name="screen" value="@showing.getScreen" class="form-control" min="1" max="10" required/>
+                            </div>
+                            <div class="col-xs-12">
+                                <label class="control-label" for="date">Date:</label>
+                                <div class="input-group">
+                                    <input class="form-control" id="date" name="date" value="@showing.getDate" placeholder="DD/MM/YYYY" type="text" required/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+
+                            </div>
+                            <input type="hidden" id="id" name="id" class="form-control" value="@showing.getShowingId"/>
+                            <input type="hidden" id="title" name="title" class="form-control" value="@film.getFilmId"/>
+                            <div class="span7 text-center">
+                                <input type="submit" value="Update Showing" class="btn btn-lg btn-primary">
+                            </div>
+                        </form>
+                        <div class="span7 text-center">
+                            <button class="btn btn-lg btn-warning" onclick="goBack()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <!-- Include jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script>
+        $(document).ready(function () {
+            var date_input = $('input[name="date"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'dd/mm/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+        })
+</script>
+<script>
+    function goBack(){
+        window.history.back();
+    }
+</script>
+    <!--Created by Evan-->

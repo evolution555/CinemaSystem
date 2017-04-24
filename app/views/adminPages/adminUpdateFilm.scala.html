@@ -17,32 +17,31 @@
                             <input type="hidden" name="id" value="@film.getFilmId" />
 
                             <label class="control-label">Title:</label>
-                            <input type="text" name="title" value="@film.getTitle" class="form-control"/>
+                            <input type="text" name="title" value="@film.getTitle" class="form-control" required/>
 
                             <label class="control-label">Director</label>
-                            <input type="text" name="director" value="@film.getDirector" class="form-control" />
+                            <input type="text" name="director" value="@film.getDirector" class="form-control" required/>
 
                             <label class="control-label">Trailer (Embedded URL Link):</label>
-                            <input type="text" name="trailerURL" value="@film.getTrailerURL" class="form-control" />
+                            <input type="url" name="trailerURL" value="@film.getTrailerURL" class="form-control" required/>
 
                             <label class="control-label">Duration:</label>
                             <div class="input-group">
-                                <input type="number" value="@film.getDuration"  name="duration" placeholder="Mins" class="form-control" />
+                                <input type="number"  name="duration" value="@film.getDuration" placeholder="Mins" class="form-control" min="0" step="30" required/>
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-time"></span>
                                 </span>
                             </div>
 
                             <label class="control-label">Description</label>
-                            <input type="text" value="@film.getSummery" name="summery" class="form-control" />
+                            <input type="text" value="@film.getSummery" name="summery" class="form-control" required/>
 
                             <div class="span7 text-center">
                                 <input type="submit" value="Update Film" class="btn btn-lg btn-primary" />
                             </div>
                         </form>
                         <div class="span7 text-center">
-                            <a href="@routes.AdminController.adminFilm()"><button class="btn btn-lg btn-warning">
-                                Cancel</button></a>
+                            <button class="btn btn-lg btn-warning" onclick="goBack()">Cancel</button>
                         </div>
                     </div>
                 </div>

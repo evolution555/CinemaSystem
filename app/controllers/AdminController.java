@@ -1,5 +1,6 @@
 package controllers;
 
+import com.avaje.ebeaninternal.server.lib.util.Str;
 import play.api.Environment;
 import play.db.ebean.Transactional;
 import play.mvc.*;
@@ -9,7 +10,6 @@ import models.users.*;
 import models.*;
 
 import javax.inject.Inject;
-import java.nio.file.Files;
 import java.util.*;
 
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -145,6 +145,7 @@ public class AdminController extends Controller {
     public Result adminShowing(String title) {
         User u = HomeController.getUserFromSession();
         List<Showing> showingsList = Showing.findMovieShowings(title);
+        Collections.sort(showingsList,new dateComparitor());
         Film f = Film.find.byId(title);
         //List<Showing> showingsList = Showing.findAll();
         return ok(adminShowing.render(u, showingsList, f));
@@ -189,22 +190,48 @@ public class AdminController extends Controller {
     }
 
     //need to fill html form with showing details. As hits null pointer
-    @Transactional
     public Result updateShowing(String id) {
-        User u = HomeController.getUserFromSession();
-        Form<Showing> newShowingForm;
-        try {
-            Showing s = Showing.find.ref(id);
-            newShowingForm = formFactory.form(Showing.class).fill(s);
-        } catch (Exception ex) {
-            return badRequest("error");
-        }
-        return ok(adminAddShowing.render(HomeController.getUserFromSession(), null));
+        Showing s = Showing.find.byId(id);
+        Film f = Film.find.byId(s.getTitle());
+        flash("success", "");
+        return ok(adminUpdateShowing.render(HomeController.getUserFromSession(), f, s, 0));
+    }
+    public Result updateShowingsSubmit(){
+        DynamicForm df = formFactory.form().bindFromRequest();
+        int screen = Integer.parseInt(df.get("screen"));
+        String date = df.get("date");
+        String id = df.get("id");
+
+        Showing s = Showing.find.byId(id);
+        s.setScreen(screen);
+        s.setDate(date);
+        s.update();
+        flash("success", "Showing Updated");
+        return redirect(routes.AdminController.adminFilm());
     }
 
     public Result deleteShowing(String id) {
         Showing.find.ref(id).delete();
         flash("success", "Showing has been deleted.");
+        return redirect(routes.AdminController.adminFilm());
+    }
+
+    //Time
+    public Result adminChangeTime(String id){
+        ShowingTime s = ShowingTime.find.byId(id);
+        return ok(adminChangeTime.render(HomeController.getUserFromSession(), s));
+    }
+
+    public Result updateTimeSubmit(){
+        DynamicForm df = formFactory.form().bindFromRequest();
+        String time = df.get("time");
+        String id = df.get("id");
+
+        ShowingTime st = ShowingTime.find.byId(id);
+        st.setTime(time);
+        st.update();
+        flash("success","Time Updated");
+
         return redirect(routes.AdminController.adminFilm());
     }
 

@@ -1,0 +1,37 @@
+@(user: models.users.User, showing: models.ShowingTime)
+
+@adminPages.adminMain("Update Time", user) {
+
+
+    <div class="m-header scene_element scene_element--fadein">
+        <div class="row">
+            <h1 class="page-header" style="text-align: center">Update Time</h1>
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="panel panel-default credit-card-box">
+                    <div class="panel-body">
+                        <form method="post" action="@routes.AdminController.updateTimeSubmit()" class="form-horizontal">
+                            <div class="col-xs-12">
+                                <label class="control-label" for="time">Time:</label>
+                                <div class="input-group">
+                                    <input type="time" name="time" value="@showing.getTime" placeholder="HH:MM" class="form-control" step="1800" required/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="id" name="id" class="form-control" value="@showing.getId"/>
+                            <div class="span7 text-center">
+                                <input type="submit" value="Update Time" class="btn btn-lg btn-primary">
+                            </div>
+                        </form>
+                        <div class="span7 text-center">
+                            <button class="btn btn-lg btn-warning" onclick="goBack()">Cancel</button
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    <!--Created by Evan-->

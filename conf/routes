@@ -30,13 +30,16 @@ GET         /adminStaff                       controllers.AdminController.adminS
 GET         /adminAddStaff                    controllers.AdminController.adminAddStaff
 GET         /delStaff/:id                     controllers.AdminController.adminDeleteStaff(id: Long)
 GET         /adminUpdateStaff/:id             controllers.AdminController.adminUpdateStaff(id:Long)
+GET         /adminChangeTime/:id              controllers.AdminController.adminChangeTime(id: String)
 
+POST        /updateTimeSubmit                 controllers.AdminController.updateTimeSubmit
 POST        /addStaffSubmit                   controllers.AdminController.addStaffSubmit
-POST        /paymentSubmit                 controllers.PaymentController.paymentSubmit
-POST        /bookingSubmit                 controllers.HomeController.bookingSubmit
+POST        /paymentSubmit                    controllers.PaymentController.paymentSubmit
+POST        /bookingSubmit                    controllers.HomeController.bookingSubmit
 POST        /messageSubmit                    controllers.HomeController.messageSubmit
 POST        /addCarouselSubmit                controllers.AdminController.addCarouselSubmit
 POST        /adminShowingSubmit               controllers.AdminController.adminShowingSubmit
+POST        /updateShowingsSubmit             controllers.AdminController.updateShowingsSubmit
 POST        /updateMovieSubmit                controllers.AdminController.updateMovieSubmit
 POST        /addUserSubmit                    controllers.HomeController.addUserSubmit
 POST        /loginSubmit                      controllers.LoginController.loginSubmit
